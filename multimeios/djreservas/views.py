@@ -5,5 +5,5 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'djreservas/index.html')
-def forms(resquest):
+def forms(request):
     return render(request, 'djreservas/forms.html')
