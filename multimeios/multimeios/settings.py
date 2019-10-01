@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# Aplicações criadas para o projeto
 
 INSTALLED_APPS = [
     'djreservas.apps.DjreservasConfig',
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# Regras para funcionamento das Aplicações
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,6 +127,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+# Criação do caminho para os arquivos estáticos (CSS, JS, Imagens)
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
