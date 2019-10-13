@@ -4,7 +4,7 @@ ficarão visiveis por ser a base do site. -->
 <!-- Colocado em pt-br primeiramente por todo o site ser em
 português-brasil, mas pode ter a possibilidade de colocar em
 outras línguas. -->
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <!-- Autor do código e descrições sobre o código. -->
@@ -18,7 +18,17 @@ outras línguas. -->
   <!-- Bootstrap core CSS -->
   <!-- Função do django para ativar as bibliotecas do Bootstrap. -->
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
+  <link href="{% static 'css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+  
+  <!-- Bootstrap core JS e Jquery -->
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/moment.min.js' %}"></script>
+  <script src="{% static 'js/moment-pt-br.js' %}"></script>
+  <script src="{% static 'js/moment-with-locales.min.js' %}"></script>
+  <script src="{% static 'js/tempusdominus-bootstrap-4.min.js' %}"></script>
+  
 </head>
 
 <body>
@@ -31,12 +41,8 @@ outras línguas. -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div id="divBusca">
-          <img src="{% static 'img/search.png'%}" alt="Buscar..." width="34" height="34%"/>
-          <input type="text" id="txtBusca" placeholder="Buscar..."/>
-          <button id="btnBusca" class="" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-controls="false" aria-label="Toggle navigation">Buscar</button>
-          <span class="navbar-toggler-icon"></span>
-        </div>
+
+      <!--Opções do Menu-->
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
@@ -46,15 +52,23 @@ outras línguas. -->
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'djreservas:forms' %}">Sobre</a>
+            <a class="nav-link" href="#">Formulário</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Serviços</a>
+            <a class="nav-link" href="#">Reservas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contatos</a>
           </li>
         </ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">user</a>
+            <div class="dropdown-menu" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#" data-toggle="modal">Trocar Senha</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal">Sair</a>
+            </div>
+          </div>
       </div>
     </div>
   </nav>
@@ -87,7 +101,7 @@ outras línguas. -->
           <tr>
             <td width="265" valign="top"><table width="80%" cellspacing="3" cellpadding="0" border="0">
               <tbody><tr>
-                <td><a href="index.html" style="color:grey" title="institucional" class="linkdestaq">Institucional</a></td>
+                <td><a href="{% url 'djreservas:index' %}" style="color:grey" title="institucional" class="linkdestaq">Institucional</a></td>
               </tr>
               <tr>
                 <td><a href="../pesquisa/index.html" style="color:grey" title="Pesquisa" class="linkdestaq">Pesquisa</a></td>
@@ -120,10 +134,6 @@ outras línguas. -->
    </div>
   </nav>
   </footer>
-
-  <!-- Bootstrap core JS e Jquery -->
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
   
 </body>
 
