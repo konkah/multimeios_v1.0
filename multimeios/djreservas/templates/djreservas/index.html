@@ -378,9 +378,11 @@ HTML. -->
 <section>
     <h4>Formulário Simples</h4>
 
+    {% if form.errors %}
     <div class="alert alert-danger">
       {{form.errors}}
     </div>
+    {% endif %}
 
     <form action="{% url 'djreservas:index' %}" method="post">
       </br>
@@ -445,11 +447,10 @@ HTML. -->
   
       <div class="form-group">
         <strong><label for="sala">Salas Multimeios</label></strong>
-        {{form.sala.value}}
         <select name="sala" class="form-control" id="sala">
           <option value="0">-- Escolha a Sala --</option>
           {% for sala in salas %}
-            <option {% if sala.id != form.sala.value %} selected {% endif %} value="{{sala.id}}">{{sala.id}}{{sala.nome}}</option>
+            <option {% if sala.id|stringformat:"i" == form.sala.value %} selected {% endif %} value="{{sala.id}}">{{sala.nome}}</option>
           {% endfor %}
         </select>
       </div>
