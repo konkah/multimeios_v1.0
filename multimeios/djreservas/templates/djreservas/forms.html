@@ -1,0 +1,95 @@
+{% extends 'djreservas/base.html' %}
+
+{% block content %}
+<section>
+        <h4>Reserva Multimeios</h4>
+    
+        {% if form.errors %}
+        <div class="alert alert-danger">
+          {{form.errors}}
+        </div>
+        {% endif %}
+    
+        <form action="{% url 'djreservas:forms' %}" method="post">
+          </br>
+          {% csrf_token %}
+          <div class="form-group">
+            <strong><label for="data_reserva">Data para Reserva</label></strong>
+            <div class="input-group date" id="data_reserva" data-target-input="nearest">
+              <input name="data_reserva" type="text" class="form-control datetimepicker-input" value="{{ form.data_reserva.value }}" data-target="#data_reserva"/>
+              <div class="input-group-append" data-target="#data_reserva" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+            </div>
+          </div>
+          
+          <script>
+            $(document).ready(function(){
+              $("#data_reserva").datetimepicker({
+                format: "DD/MM/YYYY", 
+                locale: "pt-BR"
+              })
+            })
+          </script>
+      
+          <div class="row">
+              <div class='col-md-6'>
+                  <div class="form-group">
+                      <strong><label for="hora_inicio">Hora de Início</label></strong>
+                      <div class="input-group date" id="hora_inicio" data-target-input="nearest">
+                        <input name="hora_inicio" type="text" class="form-control datetimepicker-input" value="{{ form.hora_inicio.value }}" data-target="#hora_inicio"/>
+                        <div class="input-group-append" data-target="#hora_inicio" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <div class='col-md-6'>
+                  <div class="form-group">
+                      <strong><label for="hora_fim">Hora de Fim</label></strong>
+                      <div class="input-group date" id="hora_fim" data-target-input="nearest">
+                        <input name="hora_fim" type="text" class="form-control datetimepicker-input" value="{{ form.hora_fim.value }}" data-target="#hora_fim"/>
+                        <div class="input-group-append" data-target="#hora_fim" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+          <script>
+             $(document).ready(function(){
+                $("#hora_inicio").datetimepicker({
+                  format: "HH:mm", 
+                  locale: "pt-BR"
+                })
+              })
+              $(document).ready(function(){
+                $("#hora_fim").datetimepicker({
+                  format: "HH:mm", 
+                  locale: "pt-BR"
+                })
+              })
+          </script>
+      
+          <div class="form-group">
+            <strong><label for="sala">Salas Multimeios</label></strong>
+            <select name="sala" class="form-control" id="sala">
+              <option value="0">-- Escolha a Sala --</option>
+              {% for sala in salas %}
+                <option {% if sala.id|stringformat:"i" == form.sala.value %} selected {% endif %} value="{{sala.id}}">{{sala.nome}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <strong><label for="motivo">Motivo da Reserva</label></strong>
+            <textarea name="motivo" class="form-control" id="motivo" rows="3">{{ form.motivo.value }}</textarea>
+          </div>
+    
+          <button class="btn btn-info" type="submit">Pedir Reserva</button>
+      
+        </form>
+    </section>
+
+
+{% endblock %}

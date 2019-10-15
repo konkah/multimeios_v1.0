@@ -2,6 +2,8 @@ from django.db import models
 import datetime
 
 # Create your models here.
+# Criação do modelo para o banco de dados
+
 class Grupo(models.Model):
     nome = models.CharField(max_length=200)
     patrocinio = models.CharField(max_length=200)
