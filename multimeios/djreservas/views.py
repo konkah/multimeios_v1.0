@@ -20,7 +20,10 @@ def index(request):
             reserva.hora_inicio = form.data["hora_inicio"]
             reserva.hora_fim = form.data["hora_fim"]
             reserva.motivo = form.data["motivo"]
-            print(reserva.data_reserva)
+            
+            salas = Sala.objects.filter(id = form.data["sala"])
+            reserva.sala = salas[0]
+            reserva.responsavel_cliente = request.user
             #reserva.save()
             # process the data in form.cleaned_data as required
             # ...

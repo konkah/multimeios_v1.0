@@ -12,11 +12,7 @@ class DataForm(forms.Form):
     )
 
 class ReservaForm(forms.Form):
-    data_reserva = forms.DateField(input_formats=['%d/%m/%Y'],
-        widget=forms.DateTimeInput(attrs={
-            'class': 'form-control datetimepicker-input',
-            'data-target': '#datetimepicker1'
-        }))
+    data_reserva = forms.DateField(input_formats=['%d/%m/%Y'])
     hora_inicio = forms.TimeField()
     hora_fim = forms.TimeField()
     sala = forms.IntegerField()
