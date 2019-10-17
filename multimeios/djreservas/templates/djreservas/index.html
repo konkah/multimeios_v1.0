@@ -370,13 +370,40 @@ HTML. -->
         </div>
       </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+          $("#data_reserva").datetimepicker({
+              Format: 'DD/MM/YYYY',
+              locale: 'pt-BR'
+              dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'
+                  ],
+              dayNamesMin: [
+              'D','S','T','Q','Q','S','S','D'
+              ],
+              dayNamesShort: [
+              'Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'
+              ],
+              monthNames: [  'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro',
+              'Outubro','Novembro','Dezembro'
+              ],
+              monthNamesShort: [
+              'Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set',
+              'Out','Nov','Dez'
+              ],
+              nextText: 'Próximo',
+              prevText: 'Anterior'
+              });
+          });
+        </script>
+    
   
 </section>
 </div>
 
 <div class="col-md-4">
 <section>
-    <h4>Reserva Multimeios</h4>
+    <h4>Multimeios - Reservas</h4>
 
     {% if form.errors %}
     <div class="alert alert-danger">
@@ -450,7 +477,13 @@ HTML. -->
         <select name="sala" class="form-control" id="sala">
           <option value="0">-- Escolha a Sala --</option>
           {% for sala in salas %}
-            <option {% if sala.id|stringformat:"i" == form.sala.value %} selected {% endif %} value="{{sala.id}}">{{sala.nome}}</option>
+            <option 
+            {% if sala.id|stringformat:"i" == form.sala.value %}
+              selected 
+            {% endif %} 
+            value="{{sala.id}}">
+              {{sala.nome}}
+          </option>
           {% endfor %}
         </select>
       </div>

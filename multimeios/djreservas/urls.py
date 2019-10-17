@@ -7,5 +7,5 @@ from . import views
 app_name = 'djreservas'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('forms/', view.forms, name='forms'),
+    path('forms/', views.forms, name='forms'),
 ]
