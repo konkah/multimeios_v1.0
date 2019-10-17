@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import ReservaForm, DataForm
 from .models import Sala, Reserva
-
+import datetime
 # Create your views here.
 # Templates que serão visualizados no site
 
@@ -16,7 +16,8 @@ def index(request):
         if form.is_valid():
             reserva = Reserva()
             
-            reserva.data_reserva = form.data["data_reserva"]
+            data_reserva_texto = form.data["data_reserva"]
+            data_reserva = datetime.datetime.strptime(data_reserva_texto, "%d/%m/%Y")
             reserva.hora_inicio = form.data["hora_inicio"]
             reserva.hora_fim = form.data["hora_fim"]
             reserva.motivo = form.data["motivo"]
@@ -24,7 +25,8 @@ def index(request):
             salas = Sala.objects.filter(id = form.data["sala"])
             reserva.sala = salas[0]
             reserva.responsavel_cliente = request.user
-            #reserva.save()
+            reserva.data_reserva = data_reserva
+            reserva.save()
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:

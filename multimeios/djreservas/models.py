@@ -17,6 +17,6 @@ class Reserva(models.Model):
     hora_inicio = models.TimeField('Hora Início', default=datetime.time(0, 00)) #time | -----
     hora_fim = models.TimeField('Hora Fim', default=datetime.time(0, 00)) #time | time
     motivo = models.CharField(max_length=2000)
-    aprovacao = models.BooleanField('Aprovação')
+    aprovacao = models.BooleanField('Aprovação', null = True)
     
 
