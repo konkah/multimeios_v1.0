@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import ReservaForm
@@ -6,6 +7,7 @@ import datetime
 # Create your views here.
 # Templates que serão visualizados no site
 
+@staff_member_required
 def index(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -42,7 +44,7 @@ def index(request):
     # Criação de Variável
     salas = Sala.objects.all()
     # Retorno na tela
-    return render(request, 'djreservas/index.html', {'form': form, 'salas': salas})
+    return render(request, 'djreservas/index.html', {'form': form, 'salas': salas, 'email': request.user.email})
 
 def forms(request):
     if request.method == 'POST':
