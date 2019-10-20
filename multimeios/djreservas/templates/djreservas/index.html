@@ -147,7 +147,7 @@ HTML. -->
       
       <div class="form-group">
         <strong><label for="motivo">Motivo da Reserva</label></strong>
-        <textarea name="motivo" class="form-control" id="motivo" rows="3">{{ form.motivo.value }}</textarea>
+        <textarea name="motivo" placeholder="Coloque o motivo de sua reserva." class="form-control" id="motivo" rows="3">{% if form.motivo.value != None %}{{form.motivo.value}}{% endif %}</textarea>
       </div>
 
       <button class="btn btn-info" type="submit">Pedir Reserva</button>

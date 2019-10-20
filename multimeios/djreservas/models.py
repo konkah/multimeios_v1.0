@@ -10,6 +10,9 @@ class Sala(models.Model):
     capacidade = models.IntegerField('Capacidade de Pessoas', default=0)
     recursos_fixos = models.CharField('Recursos Fixos', max_length=2000)
 
+    def __str__(self):
+        return self.nome + " ("+self.recursos_fixos+")"
+
 class Reserva(models.Model):
     sala = models.ForeignKey(Sala, on_delete=models.CASCADE)
     responsavel_cliente = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,5 +21,8 @@ class Reserva(models.Model):
     hora_fim = models.TimeField('Hora Fim', default=datetime.time(0, 00)) #time | time
     motivo = models.CharField(max_length=2000)
     aprovacao = models.BooleanField('Aprovação', null = True)
+
+    def __str__(self):
+        return self.sala.nome + " ( " + str(self.data_reserva) +", de " + str(self.hora_inicio) +" até " + str(self.hora_fim) + " )."
     
 
