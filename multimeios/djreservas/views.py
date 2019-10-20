@@ -1,5 +1,6 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 from django.forms.utils import ErrorList
 from .forms import ReservaForm
@@ -80,6 +81,7 @@ def index(request):
             reserva.responsavel_cliente = request.user
 
             reserva.save()
+            return HttpResponseRedirect(reverse('djreservas:index'))
 
     # Criação da condição para o formulário ficar em branco
     else:

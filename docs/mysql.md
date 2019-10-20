@@ -25,3 +25,15 @@ SET GLOBAL validate_password_policy=LOW;
 ```
 
 No caso da LOW, a única exigência é ter 8 caracteres.
+
+#### Caso dê mySQL não encontrado
+
+Comando para colocar as bibliotecas do mysqlclient na env.
+```
+sudo apt-get install python3-dev libmysqlclient-dev
+```
+
+Comando para instalar o mysqlclient na env.
+```
+pip install mysqlclient
+```
