@@ -115,10 +115,31 @@ def index(request):
         vetor_dias.append(dia)
 
     mes = hoje.month
-
+    
+    # Listagem de sala para o Select (pega todas as salas do banco de dados):
+    primeira_data_reserva = datetime.combine(vetor_dias[0], datetime.min.time())
+    ultima_data_reserva = datetime.combine(vetor_dias[-1], datetime.min.time())
+    reservas = Reserva.objects.filter(
+        data_reserva__range = [primeira_data_reserva, ultima_data_reserva]
+    )
+    
+    calendario = []
+    for dia in vetor_dias:
+        reservas_dia=reservas.filter(data_reserva=dia)
+        data  = {'dia':dia, 'reservas':reservas_dia}
+        calendario.append(data)
+    
     # Retorno na tela
-    return render(request, 'djreservas/index.html', {'form': form, 'salas': salas, 'email': request.user.email,
-     'nome_mes': nome_mes, 'semana': semana, 'dias': vetor_dias, 'mes': mes, 'hoje':hoje})
+    return render(request, 'djreservas/index.html', {
+        'form': form, 
+        'salas': salas, 
+        'email': request.user.email,
+        'nome_mes': nome_mes, 
+        'semana': semana, 
+        'mes': mes, 
+        'hoje': hoje,
+        'calendario': calendario
+    })
 
 @staff_member_required
 def forms(request):
