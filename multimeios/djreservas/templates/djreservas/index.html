@@ -62,12 +62,6 @@ HTML. -->
 <section>
     <h4>Multimeios - Reservas</h4>
 
-    {% if form.errors %}
-    <div class="alert alert-danger">
-      {{form.errors}}
-    </div>
-    {% endif %}
-
     <form action="{% url 'djreservas:index' %}" method="post">
       </br>
       {% csrf_token %}
@@ -79,6 +73,9 @@ HTML. -->
               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
         </div>
+        {% for error in form.data_reserva.errors %}
+          {{error}}
+        {% endfor %}
       </div>
       
       <script>
@@ -100,6 +97,9 @@ HTML. -->
                         <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
                     </div>
                   </div>
+                  {% for error in form.hora_inicio.errors %}
+                    {{error}}
+                  {% endfor %}
                 </div>
           </div>
           <div class='col-md-6'>
@@ -111,6 +111,9 @@ HTML. -->
                         <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
                     </div>
                   </div>
+                  {% for error in form.hora_fim.errors %}
+                    {{error}}
+                  {% endfor %}
                 </div>
           </div>
       </div>
@@ -143,11 +146,17 @@ HTML. -->
           </option>
           {% endfor %}
         </select>
+        {% for error in form.sala.errors %}
+          {{error}}
+        {% endfor %}
       </div>
       
       <div class="form-group">
         <strong><label for="motivo">Motivo da Reserva</label></strong>
         <textarea name="motivo" placeholder="Coloque o motivo de sua reserva." class="form-control" id="motivo" rows="3">{% if form.motivo.value != None %}{{form.motivo.value}}{% endif %}</textarea>
+        {% for error in form.motivo.errors %}
+          {{error}}
+        {% endfor %}
       </div>
 
       <button class="btn btn-info" type="submit">Pedir Reserva</button>
