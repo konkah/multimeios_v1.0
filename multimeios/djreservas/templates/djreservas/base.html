@@ -64,9 +64,9 @@ outras línguas. -->
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{email}}</a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="#" data-toggle="modal">Trocar Senha</a>
+              <a class="dropdown-item" href="{% url 'admin:password_change' %}">Trocar Senha</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal">Sair</a>
+              <a class="dropdown-item" href="{% url 'admin:logout' %}">Sair</a>
             </div>
           </div>
       </div>
