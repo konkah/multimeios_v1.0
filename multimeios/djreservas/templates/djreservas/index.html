@@ -23,7 +23,7 @@ HTML. -->
       </header>
       <div class="row border border-right-0 border-bottom-0">
         {% for dia in dias %}
-          {% if dia.month == mes and dia.weekday != 5 and dia.weekday != 6 %}  
+          {% if dia.month == mes and dia.weekday != 5 and dia.weekday != 6 and dia >= hoje %}  
             <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate">
           {% else %}
             <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">

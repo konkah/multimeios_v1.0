@@ -1,6 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.forms.utils import ErrorList
 from .forms import ReservaForm
 from .models import Sala, Reserva
 from datetime import datetime, timedelta
@@ -13,6 +14,7 @@ from dateutil.relativedelta import *
 # se não estiver, é redirecionada para a tela de login
 @staff_member_required
 def index(request):
+    hoje = datetime.now().date()
     # o request method é como entramos nessa página:
     # GET: seria entrar digitando a url no browser ou clicando em um link
     # POST: o method que colocamos no formulário (olhar a tag form no index.html)
@@ -21,14 +23,26 @@ def index(request):
         # Criação da variável 'form' para receber os dados do formulário djreservas via post:
         form = ReservaForm(request.POST)
         
+        # O que vem no formulário é o ID da sala
+        sala_id = form.data["sala"]
+        if sala_id == "0" or sala_id == '' or sala_id == None:
+            form.add_error("sala", "Por favor, escolha uma sala.")
+
+        # A data vem em formato texto do formulário
+        data_reserva_texto = form.data["data_reserva"]
+        # aqui é convertida para ser uma data do django
+        data_reserva = datetime.strptime(data_reserva_texto, "%d/%m/%Y")
+        if data_reserva.date() < hoje:
+            form.add_error("data_reserva", "Não é possível reservar datas passadas.")
+        elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
+            form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
+
+        
+
         # Validação do Formulário do site com o Banco de Dados criado:
         if form.is_valid():
             reserva = Reserva()
             
-            # A data vem em formato texto do formulário
-            data_reserva_texto = form.data["data_reserva"]
-            # aqui é convertida para ser uma data do django
-            data_reserva = datetime.strptime(data_reserva_texto, "%d/%m/%Y")
             # só então colocamos ela na reserva que será salva no banco
             reserva.data_reserva = data_reserva
 
@@ -38,8 +52,6 @@ def index(request):
 
             reserva.motivo = form.data["motivo"]
             
-            # O que vem no formulário é o ID da sala
-            sala_id = form.data["sala"]
             # como precisamos da sala em si para colocar na reserva, buscamos no banco pelo id
             salas = Sala.objects.filter(id = sala_id)
             # o filtro devolve uma lista com um item só, pegamos o primeiro item
@@ -56,8 +68,6 @@ def index(request):
 
     # Listagem de sala para o Select (pega todas as salas do banco de dados):
     salas = Sala.objects.all()
-    
-    hoje = datetime.today()
     
     # pega o que será exibido no topo do calendário (ex: "Outubro - 2019")
     meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
@@ -89,7 +99,7 @@ def index(request):
 
     # Retorno na tela
     return render(request, 'djreservas/index.html', {'form': form, 'salas': salas, 'email': request.user.email,
-     'nome_mes': nome_mes, 'semana': semana, 'dias': vetor_dias, 'mes': mes})
+     'nome_mes': nome_mes, 'semana': semana, 'dias': vetor_dias, 'mes': mes, 'hoje':hoje})
 
 @staff_member_required
 def forms(request):
