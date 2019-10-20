@@ -72,7 +72,7 @@ HTML. -->
           </div>
         </div>
         {% for error in form.data_reserva.errors %}
-          {{error}}
+          <span class="text-danger">{{error}}</span>
         {% endfor %}
       </div>
       
@@ -96,7 +96,7 @@ HTML. -->
                     </div>
                   </div>
                   {% for error in form.hora_inicio.errors %}
-                    {{error}}
+                    <span class="text-danger">{{error}}</span>
                   {% endfor %}
                 </div>
           </div>
@@ -110,7 +110,7 @@ HTML. -->
                     </div>
                   </div>
                   {% for error in form.hora_fim.errors %}
-                    {{error}}
+                    <span class="text-danger">{{error}}</span>
                   {% endfor %}
                 </div>
           </div>
@@ -145,7 +145,7 @@ HTML. -->
           {% endfor %}
         </select>
         {% for error in form.sala.errors %}
-          {{error}}
+          <span class="text-danger">{{error}}</span>
         {% endfor %}
       </div>
       
@@ -153,7 +153,7 @@ HTML. -->
         <strong><label for="motivo">Motivo da Reserva</label></strong>
         <textarea name="motivo" placeholder="Coloque o motivo de sua reserva." class="form-control" id="motivo" rows="3">{% if form.motivo.value != None %}{{form.motivo.value}}{% endif %}</textarea>
         {% for error in form.motivo.errors %}
-          {{error}}
+          <span class="text-danger">{{error}}</span>
         {% endfor %}
       </div>
 
