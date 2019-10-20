@@ -15,6 +15,7 @@ from dateutil.relativedelta import *
 @staff_member_required
 def index(request):
     hoje = datetime.now().date()
+    agora = datetime.now().time()
     # o request method é como entramos nessa página:
     # GET: seria entrar digitando a url no browser ou clicando em um link
     # POST: o method que colocamos no formulário (olhar a tag form no index.html)
@@ -30,13 +31,31 @@ def index(request):
 
         # A data vem em formato texto do formulário
         data_reserva_texto = form.data["data_reserva"]
-        # aqui é convertida para ser uma data do django
-        data_reserva = datetime.strptime(data_reserva_texto, "%d/%m/%Y")
-        if data_reserva.date() < hoje:
-            form.add_error("data_reserva", "Não é possível reservar datas passadas.")
-        elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
-            form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
-
+        if data_reserva_texto != '':
+            # aqui é convertida para ser uma data do django
+            data_reserva = datetime.strptime(data_reserva_texto, "%d/%m/%Y")
+        # A hora de início vem em formato texto do formulário
+        hora_inicio_texto = form.data["hora_inicio"]
+        if hora_inicio_texto != '':
+            # aqui é convertida para ser uma hora do django
+            hora_inicio = datetime.strptime(hora_inicio_texto, "%H:%M")
+        # A hora de fim vem em formato texto do formulário
+        hora_fim_texto = form.data["hora_fim"]
+        if hora_fim_texto != '':
+            # aqui é convertida para ser uma hora do django
+            hora_fim = datetime.strptime(hora_fim_texto, "%H:%M")
+        
+        if data_reserva_texto != '':
+            if data_reserva.date() < hoje:
+                form.add_error("data_reserva", "Não é possível reservar datas passadas.")
+            elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
+                form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
+            elif hora_inicio_texto != '' and hora_fim_texto != '':
+                if data_reserva.date() == hoje and hora_inicio.time() < agora:
+                    form.add_error("hora_inicio", "Não é possível reservar horas passadas.")
+                elif hora_inicio >= hora_fim:
+                    form.add_error("hora_inicio", "A hora final precisa ser posterior à hora de início.")
+        
         
 
         # Validação do Formulário do site com o Banco de Dados criado:
