@@ -5,7 +5,9 @@
     <section>
     </br>
       <h4>Multimeios - Reservas</h4>
-
+      {% for error in form.non_field_errors %}
+        <span class="text-danger">{{error}}</span>
+      {% endfor %}
       <form action="{% url 'djreservas:forms' %}" method="post">
         </br>
         {% csrf_token %}
@@ -63,7 +65,7 @@
                 selected 
               {% endif %} 
               value="{{sala.id}}">
-                {{sala.nome}}
+                {{sala}}
             </option>
             {% endfor %}
           </select>

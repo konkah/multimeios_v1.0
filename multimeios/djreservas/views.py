@@ -152,6 +152,7 @@ def index(request):
 
 @staff_member_required
 def forms(request):
+    reservas_feitas = []
     hoje = datetime.now().date()
     agora = datetime.now().time()
     mes_seguinte = hoje + relativedelta(months=1)
@@ -177,15 +178,16 @@ def forms(request):
         hora_inicio_texto = form.data["hora_inicio"]
         if hora_inicio_texto != '':
             # Aqui é convertida para ser uma hora do django
-            hora_inicio = datetime.strptime(hora_inicio_texto, "%H:%M")
+            hora_inicio = datetime.strptime(hora_inicio_texto, "%H:%M").time()
         # A hora de fim vem em formato texto do formulário
         hora_fim_texto = form.data["hora_fim"]
         if hora_fim_texto != '':
             # Aqui é convertida para ser uma hora do django
-            hora_fim = datetime.strptime(hora_fim_texto, "%H:%M")
-        
+            hora_fim = datetime.strptime(hora_fim_texto, "%H:%M").time()
+
         #Validações das Reservas
         if data_reserva_texto != '':
+            reservas_feitas = Reserva.objects.filter(data_reserva=data_reserva, aprovacao=True, sala__id=sala_id)
             if data_reserva.date() < hoje:
                 form.add_error("data_reserva", "Não é possível reservar datas passadas.")
             elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
@@ -193,7 +195,11 @@ def forms(request):
             elif data_reserva.date() > mes_seguinte:
                 form.add_error("data_reserva", "Reserva não pode ser feita com mais de 1 mês de antecedência.")
             elif hora_inicio_texto != '' and hora_fim_texto != '':
-                if data_reserva.date() == hoje and hora_inicio.time() < agora:
+                for reserva_feita in reservas_feitas:
+                    if reserva_feita.hora_fim > hora_inicio and reserva_feita.hora_inicio < hora_fim:
+                        form.add_error("", "Já existe reserva para esta sala, nesta data e horário.")
+                        break
+                if data_reserva.date() == hoje and hora_inicio < agora:
                     form.add_error("hora_inicio", "Não é possível reservar horas passadas.")
                 elif hora_inicio >= hora_fim:
                     form.add_error("hora_inicio", "A hora final precisa ser posterior à hora de início.")
@@ -279,7 +285,8 @@ def forms(request):
         'semana': semana, 
         'mes': mes, 
         'hoje': hoje,
-        'calendario': calendario
+        'calendario': calendario,
+        'reservas_feitas': reservas_feitas,
     })
 
 @staff_member_required

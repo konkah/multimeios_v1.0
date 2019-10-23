@@ -4,8 +4,8 @@ $(document).ready(function(){
         locale: "pt-BR",
         //minDate: moment(), 
         //maxDate: moment().add(1, "M"),
-        daysOfWeekDisabled: [0,6],
-        useCurrent: false 
+        //daysOfWeek: [0,6],
+        //useCurrent: false 
     })
 
     $("#hora_inicio").datetimepicker({
