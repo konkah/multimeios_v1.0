@@ -22,15 +22,6 @@
           {% endfor %}
         </div>
           
-        <script>
-          $(document).ready(function(){
-            $("#data_reserva").datetimepicker({
-              format: "DD/MM/YYYY", 
-              locale: "pt-BR",
-            })
-          })
-        </script>
-      
         <div class="row">
           <div class='col-md-6'>
             <div class="form-group">
@@ -61,23 +52,7 @@
             </div>
           </div>
         </div>
-        <script>
-          $(document).ready(function(){
-              $("#hora_inicio").datetimepicker({
-                format: "HH:mm", 
-                locale: "pt-BR",
-                stepping:"30",
-              })
-            })
-            $(document).ready(function(){
-              $("#hora_fim").datetimepicker({
-                format: "HH:mm", 
-                locale: "pt-BR",
-                stepping:"30",
-              })
-            })
-        </script>
-      
+
         <div class="form-group">
           <strong><label for="sala">Salas Multimeios</label></strong>
           <select name="sala" class="custom-select" id="sala">

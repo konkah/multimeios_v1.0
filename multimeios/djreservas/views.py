@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.forms.utils import ErrorList
 from .forms import ReservaForm
 from .models import Sala, Reserva
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil.relativedelta import *
 
 # Create your views here.
@@ -17,6 +17,7 @@ from dateutil.relativedelta import *
 def index(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()
+    mes_seguinte = hoje + relativedelta(months=1)
     # o request method é como entramos nessa página:
     # GET: seria entrar digitando a url no browser ou clicando em um link
     # POST: o method que colocamos no formulário (olhar a tag form no index.html)
@@ -52,6 +53,8 @@ def index(request):
                 form.add_error("data_reserva", "Não é possível reservar datas passadas.")
             elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
                 form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
+            elif data_reserva.date() > mes_seguinte:
+                form.add_error("data_reserva", "Reserva não pode ser feita com mais de 1 mês de antecedência.")
             elif hora_inicio_texto != '' and hora_fim_texto != '':
                 if data_reserva.date() == hoje and hora_inicio.time() < agora:
                     form.add_error("hora_inicio", "Não é possível reservar horas passadas.")
@@ -102,9 +105,9 @@ def index(request):
     semana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
     
     # Para calcular quando começa e quando termina o calendário
-    primeiro_dia = hoje - timedelta(days = hoje.day-1)
+    primeiro_dia = hoje - relativedelta(days = hoje.day-1)
     primeiro_dia_seguinte = primeiro_dia + relativedelta(months = 1)
-    ultimo_dia = primeiro_dia_seguinte - timedelta(days = 1)
+    ultimo_dia = primeiro_dia_seguinte - relativedelta(days = 1)
 
     dias_antes = primeiro_dia.weekday() + 1 % 7
     dias_depois = 6 - (ultimo_dia.weekday() + 1 % 7)
@@ -151,6 +154,7 @@ def index(request):
 def forms(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()
+    mes_seguinte = hoje + relativedelta(months=1)
     # o request method é como entramos nessa página:
     # GET: seria entrar digitando a url no browser ou clicando em um link
     # POST: o method que colocamos no formulário (olhar a tag form no index.html)
@@ -186,6 +190,8 @@ def forms(request):
                 form.add_error("data_reserva", "Não é possível reservar datas passadas.")
             elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
                 form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
+            elif data_reserva.date() > mes_seguinte:
+                form.add_error("data_reserva", "Reserva não pode ser feita com mais de 1 mês de antecedência.")
             elif hora_inicio_texto != '' and hora_fim_texto != '':
                 if data_reserva.date() == hoje and hora_inicio.time() < agora:
                     form.add_error("hora_inicio", "Não é possível reservar horas passadas.")
@@ -231,9 +237,9 @@ def forms(request):
     semana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
     
     # Para calcular quando começa e quando termina o calendário
-    primeiro_dia = hoje - timedelta(days = hoje.day-1)
+    primeiro_dia = hoje - relativedelta(days = hoje.day-1)
     primeiro_dia_seguinte = primeiro_dia + relativedelta(months = 1)
-    ultimo_dia = primeiro_dia_seguinte - timedelta(days = 1)
+    ultimo_dia = primeiro_dia_seguinte - relativedelta(days = 1)
 
     dias_antes = primeiro_dia.weekday() + 1 % 7
     dias_depois = 6 - (ultimo_dia.weekday() + 1 % 7)
@@ -280,6 +286,7 @@ def forms(request):
 def calendario(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()
+    mes_seguinte = hoje + relativedelta(months=1)
     # o request method é como entramos nessa página:
     # GET: seria entrar digitando a url no browser ou clicando em um link
     # POST: o method que colocamos no formulário (olhar a tag form no index.html)
@@ -315,6 +322,8 @@ def calendario(request):
                 form.add_error("data_reserva", "Não é possível reservar datas passadas.")
             elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
                 form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
+            elif data_reserva.date() > mes_seguinte:
+                form.add_error("data_reserva", "Reserva não pode ser feita com mais de 1 mês de antecedência.")
             elif hora_inicio_texto != '' and hora_fim_texto != '':
                 if data_reserva.date() == hoje and hora_inicio.time() < agora:
                     form.add_error("hora_inicio", "Não é possível reservar horas passadas.")
@@ -360,9 +369,9 @@ def calendario(request):
     semana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
     
     # Para calcular quando começa e quando termina o calendário
-    primeiro_dia = hoje - timedelta(days = hoje.day-1)
+    primeiro_dia = hoje - relativedelta(days = hoje.day-1)
     primeiro_dia_seguinte = primeiro_dia + relativedelta(months = 1)
-    ultimo_dia = primeiro_dia_seguinte - timedelta(days = 1)
+    ultimo_dia = primeiro_dia_seguinte - relativedelta(days = 1)
 
     dias_antes = primeiro_dia.weekday() + 1 % 7
     dias_depois = 6 - (ultimo_dia.weekday() + 1 % 7)
