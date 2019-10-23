@@ -119,8 +119,8 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 LANGUAGES = (
     ('pt-br', u'Português'),
-    ('en', u'Inglês'),
-    ('es', u'Espanhol'),
+    ('en', u'English'),
+    ('es', u'Espanol'),
 )
 
 USE_L10N = True

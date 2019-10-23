@@ -8,4 +8,5 @@ app_name = 'djreservas'
 urlpatterns = [
     path('', views.index, name='index'),
     path('forms/', views.forms, name='forms'),
+    path('calendario/', views.calendario, name='calendario'),
 ]
