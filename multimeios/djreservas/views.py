@@ -13,6 +13,23 @@ from dateutil.relativedelta import *
 
 # garante que uma pessoa só pode entrar nessa página se estiver logada
 # se não estiver, é redirecionada para a tela de login
+
+@staff_member_required
+def login(request):
+    return render(request, 'djreservas/login.html')
+
+@staff_member_required
+def logout(request):
+    return render(request, 'djreservas/logout.html')
+
+@staff_member_required
+def password(request):
+    return render(request, 'djreservas/password.html')
+
+@staff_member_required
+def success(request):
+    return render(request, 'djreservas/success.html')
+
 @staff_member_required
 def index(request):
     hoje = datetime.now().date()
@@ -25,7 +42,7 @@ def index(request):
     if request.method == 'POST':
         # Criação da variável 'form' para receber os dados do formulário djreservas via post:
         form = ReservaForm(request.POST)
-        
+
         # O que vem no formulário é o ID da sala
         sala_id = form.data["sala"]
         if sala_id == "0" or sala_id == '' or sala_id == None:
