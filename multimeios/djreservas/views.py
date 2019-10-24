@@ -14,23 +14,15 @@ from dateutil.relativedelta import *
 # garante que uma pessoa só pode entrar nessa página se estiver logada
 # se não estiver, é redirecionada para a tela de login
 
-@staff_member_required
-def login(request):
-    return render(request, 'djreservas/login.html')
-
-@staff_member_required
-def logout(request):
-    return render(request, 'djreservas/logout.html')
-
-@staff_member_required
+@staff_member_required(login_url='/conta/login')
 def password(request):
     return render(request, 'djreservas/password.html')
 
-@staff_member_required
+@staff_member_required(login_url='/conta/login')
 def success(request):
     return render(request, 'djreservas/success.html')
 
-@staff_member_required
+@staff_member_required(login_url='/conta/login')
 def index(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()
@@ -167,7 +159,7 @@ def index(request):
         'calendario': calendario
     })
 
-@staff_member_required
+@staff_member_required(login_url='/conta/login')
 def forms(request):
     reservas_feitas = []
     hoje = datetime.now().date()
@@ -243,7 +235,7 @@ def forms(request):
             reserva.responsavel_cliente = request.user
 
             reserva.save()
-            return HttpResponseRedirect(reverse('djreservas:forms'))
+            return HttpResponseRedirect(reverse('djreservas:success'))
 
     # Criação da condição para o formulário ficar em branco
     else:
@@ -306,7 +298,7 @@ def forms(request):
         'reservas_feitas': reservas_feitas,
     })
 
-@staff_member_required
+@staff_member_required(login_url='/conta/login')
 def calendario(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()

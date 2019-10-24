@@ -139,3 +139,4 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = '/djreservas/'
+LOGOUT_REDIRECT_URL = '/conta/login/'
