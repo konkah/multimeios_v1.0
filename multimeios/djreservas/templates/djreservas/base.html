@@ -99,28 +99,23 @@ outras línguas. -->
                 <td width="33%"><a href="http://pt.wikipedia.org/wiki/Cepetro" target="_blank" title="Wikipedia"><img src="{% static 'img/wikipedia-logo.png' %}" width="36" height="36" border="0"></a></td>
                 <td width="30%"><a href="https://www.unicamp.br/unicamp/" target="_blank" title="Unicamp"><img src="{% static 'img/log_unicamp_img_trad.png' %}" width="36" height="36" border="0"></a></td>
                </tr>
-            </tbody></table></td>
+              </tbody></table></td>
           </tr>
           <tr>
             <td width="265" valign="top"><table width="80%" cellspacing="3" cellpadding="0" border="0">
-              <tbody><tr>
-                <td><a href="{% url 'djreservas:index' %}" style="color:grey" title="institucional" class="linkdestaq">Institucional</a></td>
-              </tr>
-              <tr>
-                <td><a href="../pesquisa/index.html" style="color:grey" title="Pesquisa" class="linkdestaq">Pesquisa</a></td>
-              </tr>
-              <tr>
-                <td><a href="../ensino/index.html" style="color:grey" title="Ensino" class="linkdestaq">Ensino</a></td>
-              </tr>
-              <tr>
-                <td><a href="../extensao/index.html" style="color:grey" title="Extensão" class="linkdestaq">Extensão</a></td>
-              </tr>
-              <tr>
-                <td><a href="../sala_imprensa/index.html" style="color:grey" title="Sala da Imprensa" class="linkdestaq">Sala de Imprensa</a></td>
-              </tr>
-              <tr>
-                <td><a href="contato.html" title="Contato" style="color:grey" class="linkdestaq">Contato</a></td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td><a href="{% url 'djreservas:index' %}" style="color:grey" title="institucional" class="linkdestaq">Home</a></td>
+                </tr>
+                <tr>
+                  <td><a href="{% url 'djreservas:forms' %}" style="color:grey" title="Pesquisa" class="linkdestaq">Formulário</a></td>
+                </tr>
+                <tr>
+                  <td><a href="{% url 'djreservas:calendario' %}" style="color:grey" title="Ensino" class="linkdestaq">Calendário</a></td>
+                </tr>
+                <tr>
+                  <td><a href="contato.html" title="Contato" style="color:grey" class="linkdestaq">Contato</a></td>
+                </tr>
             </tbody></table>
           </td>
             <td class="font_rodape2" style="color:grey" width="385" valign="top"> Rua Cora Coralina, 350 – Campinas/SP<br>
