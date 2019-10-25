@@ -412,7 +412,8 @@ def calendario(request):
     calendario = []
     for dia in vetor_dias:
         reservas_dia=reservas.filter(data_reserva=dia)
-        data  = {'dia':dia, 'reservas':reservas_dia}
+        ativo = dia.month == mes and dia.weekday != 5 and dia.weekday != 6 and dia >= hoje
+        data  = {'dia':dia, 'reservas':reservas_dia, 'ativo':ativo,}
         calendario.append(data)
     
     # Retorno na tela
