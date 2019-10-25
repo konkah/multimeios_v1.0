@@ -9,6 +9,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('forms/', views.forms, name='forms'),
     path('calendario/', views.calendario, name='calendario'),
-    path('password/', views.password, name='password'),
     path('success/', views.success, name='success'),
 ]

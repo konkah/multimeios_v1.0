@@ -15,10 +15,6 @@ from dateutil.relativedelta import *
 # se não estiver, é redirecionada para a tela de login
 
 @staff_member_required(login_url='/conta/login')
-def password(request):
-    return render(request, 'djreservas/password.html')
-
-@staff_member_required(login_url='/conta/login')
 def success(request):
     return render(request, 'djreservas/success.html')
 
