@@ -405,7 +405,8 @@ def calendario(request):
     primeira_data_reserva = datetime.combine(vetor_dias[0], datetime.min.time())
     ultima_data_reserva = datetime.combine(vetor_dias[-1], datetime.min.time())
     reservas = Reserva.objects.filter(
-        data_reserva__range = [primeira_data_reserva, ultima_data_reserva]
+        data_reserva__range = [primeira_data_reserva, ultima_data_reserva],
+        aprovacao = True,
     )
     
     calendario = []

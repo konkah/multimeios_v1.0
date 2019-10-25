@@ -4,65 +4,63 @@
 <section>
   </br>
   </br>
-    <div class="col-md-10 offset-md-1">
-      <div class="container-fluid">
-        <header>
-          <h5 class="display-4 mb-4 text-center">{{nome_mes}}</h5>
-          <div class="row d-none d-sm-flex p-1 bg-dark text-white">
-            {% for dia in semana %}
-              <h5 class="col-sm p-1 text-center">{{dia}}</h5>
-            {% endfor %}
-          </div>
-        </header>
-        <div class="row border border-right-0 border-bottom-0">
-          {% for data in calendario %}
-            {% if data.dia.month == mes and data.dia.weekday != 5 and data.dia.weekday != 6 and data.dia >= hoje %}  
-              <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate">
-            {% else %}
-              <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">
-            {% endif %}
-                <h5 class="row align-items-center">
-                  <span class="date col-1">{{data.dia.day}}</span>
-                  <small class="col d-sm-none text-center text-muted">{{data.dia.weekday}}</small>
-                  <span class="col-1"></span>
-                </h5>
-                {% if not data.reservas %}
-                  <p class="d-sm-none">No events</p>
-                {% else %}
-                  {% for reserva in data.reservas %}
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
-                      {{reserva.sala.nome}}
-                    </button>
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="container-fluid">
+      <header>
+        <h5 class="display-4 mb-4 text-center">{{nome_mes}}</h5>
+        <div class="row d-none d-sm-flex p-1 bg-dark text-white">
+          {% for dia in semana %}
+            <h5 class="col-sm p-1 text-center">{{dia}}</h5>
+          {% endfor %}
+        </div>
+      </header>
+      <div class="row border border-right-0 border-bottom-0">
+        {% for data in calendario %}
+          {% if data.dia.month == mes and data.dia.weekday != 5 and data.dia.weekday != 6 and data.dia >= hoje %}  
+            <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate">
+          {% else %}
+            <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">
+          {% endif %}
+              <h5 class="row align-items-center">
+                <span class="date col-1">{{ data.dia.day }}</span>
+                <small class="col d-sm-none text-center text-muted">{{ data.dia.weekday }}</small>
+                <span class="col-1"></span>
+              </h5>
+              {% if not data.reservas %}
+                <p class="d-sm-none">No events</p>
+              {% else %}
+                {% for reserva in data.reservas %}
+                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#reserva_{{reserva.id}}">
+                    {{ reserva.sala.nome }} -
+                    {{ reserva.hora_inicio|date:'H:i' }}
+                  </button>
+                  <div class="modal fade" id="reserva_{{reserva.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                          <h5 class="modal-title" id="exampleModalLongTitle"><strong>Multimeios</strong> - {{ reserva.data_reserva|date:'d/m/Y' }}</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">
-                          ...
+                        <div class="modal-body text-left">
+                          <strong>Sala:</strong> {{ reserva.sala.nome }}</br>
+                          <strong>Horário:</strong> {{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
+                          <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
+                          <strong>Motivo:</strong> {{ reserva.motivo }}
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         </div>
                       </div>
                     </div>
-                    </div>
-                    <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white" title="{{reserva.sala.nome}}">
-                      {{reserva.sala.nome}}
-                    </a>
-                  {% endfor %}
-                {% endif %}
-              </div>
-              {% if data.dia.weekday == 5 %}
-                <div class="w-100"></div>
+                  </div>
+                {% endfor %}
               {% endif %}
-          {% endfor %}
-        </div>
+            </div>
+            {% if data.dia.weekday == 5 %}
+              <div class="w-100"></div>
+            {% endif %}
+        {% endfor %}
       </div>
     </div>    
   </section>

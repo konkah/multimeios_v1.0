@@ -23,6 +23,13 @@ class Reserva(models.Model):
     aprovacao = models.BooleanField('Aprovação', null = True)
 
     def __str__(self):
-        return self.sala.nome + " ( " + str(self.data_reserva) +", de " + str(self.hora_inicio) +" até " + str(self.hora_fim) + " )."
+        string = self.sala.nome + " ( " + str(self.data_reserva) +", de " + str(self.hora_inicio) +" até " + str(self.hora_fim) + " )."
+        if self.aprovacao == None:
+            string = string + " Em espera"
+        elif self.aprovacao == True:
+            string = string + " Aprovada"
+        else:
+            string = string + " Negada" 
+        return string
     
 
