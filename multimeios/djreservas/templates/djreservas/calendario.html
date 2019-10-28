@@ -39,7 +39,7 @@
                         </button>
                       </div>
                       <div class="modal-body text-left">
-                        <strong>Sala:</strong> {{ reserva.sala.nome }}</br>
+                        <strong>Sala:</strong> {{ reserva.sala }}</br>
                         <strong>Horário:</strong> {{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
                         <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
                         <strong>Motivo:</strong> {{ reserva.motivo }}
