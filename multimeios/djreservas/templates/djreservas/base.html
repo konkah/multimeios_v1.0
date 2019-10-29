@@ -4,7 +4,7 @@ ficarão visiveis por ser a base do site. -->
 <!-- Colocado em pt-br primeiramente por todo o site ser em
 português-brasil, mas pode ter a possibilidade de colocar em
 outras línguas. -->
-<html lang="pt">
+<html lang="en">
 
 <head>
   <!-- Autor do código e descrições sobre o código. -->
@@ -15,6 +15,7 @@ outras línguas. -->
 
   <title> Multimeios </title>
   {% load staticfiles %}
+  {% load i18n %}
   <!-- Bootstrap core CSS -->
   <!-- Função do django para ativar as bibliotecas do Bootstrap. -->
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -54,21 +55,21 @@ outras línguas. -->
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'djreservas:forms' %}">Formulário</a>
+            <a class="nav-link" href="{% url 'djreservas:forms' %}">{% trans 'Formulário' %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'djreservas:calendario' %}">Calendário</a>
+            <a class="nav-link" href="{% url 'djreservas:calendario' %}">{% trans 'Calendário' %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contato</a>
+            <a class="nav-link" href="#">{% trans 'Contato' %}</a>
           </li>
         </ul>
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{email}}</a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="{% url 'password_change' %}">Trocar Senha</a>
+              <a class="dropdown-item" href="{% url 'password_change' %}">{% trans 'Trocar Senha' %}</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Sair' %}</a>
             </div>
           </div>
       </div>
@@ -91,8 +92,8 @@ outras línguas. -->
 
       <table class="conteudo_rodape" width="100%" cellspacing="0" cellpadding="5" border="0">
           <tbody><tr>
-            <td width="265" valign="top"><span class="navbar-brand">Navegação</span></td>
-            <td width="385" valign="top"><span class="navbar-brand">Nossa Localização</span></td>
+            <td width="265" valign="top"><span class="navbar-brand">{% trans 'Navegação' %}</span></td>
+            <td width="385" valign="top"><span class="navbar-brand">{% trans 'Nossa Localização' %}</span></td>
             <td valign="top"><table width="40%" cellspacing="0" cellpadding="0" border="0">
               <tbody><tr>
                 <td width="33%"><a href="https://www.facebook.com/unicampcepetro" target="_blank" title="Facebook"><img src="{% static 'img/facebook.png' %}" width="36" height="36" border="0"></a></td>
@@ -108,13 +109,13 @@ outras línguas. -->
                   <td><a href="{% url 'djreservas:index' %}" style="color:grey" title="institucional" class="linkdestaq">Home</a></td>
                 </tr>
                 <tr>
-                  <td><a href="{% url 'djreservas:forms' %}" style="color:grey" title="Pesquisa" class="linkdestaq">Formulário</a></td>
+                  <td><a href="{% url 'djreservas:forms' %}" style="color:grey" title="Pesquisa" class="linkdestaq">{% trans 'Formulário' %}Formulário</a></td>
                 </tr>
                 <tr>
-                  <td><a href="{% url 'djreservas:calendario' %}" style="color:grey" title="Ensino" class="linkdestaq">Calendário</a></td>
+                  <td><a href="{% url 'djreservas:calendario' %}" style="color:grey" title="Ensino" class="linkdestaq">{% trans 'Calendário' %}</a></td>
                 </tr>
                 <tr>
-                  <td><a href="contato.html" title="Contato" style="color:grey" class="linkdestaq">Contato</a></td>
+                  <td><a href="contato.html" title="Contato" style="color:grey" class="linkdestaq">{% trans 'Contato' %}</a></td>
                 </tr>
             </tbody></table>
           </td>

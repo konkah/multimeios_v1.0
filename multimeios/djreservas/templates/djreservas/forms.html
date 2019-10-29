@@ -1,10 +1,10 @@
 {% extends 'djreservas/base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="col-md-6 offset-md-3">
     <section>
     </br>
-      <h4>Multimeios - Reservas</h4>
+      <h4>Multimeios - {% blocktrans %} Reservas {% endblocktrans %}</h4>
       {% for error in form.non_field_errors %}
         <span class="text-danger">{{error}}</span>
       {% endfor %}
@@ -12,7 +12,7 @@
         </br>
         {% csrf_token %}
         <div class="form-group">
-          <strong><label for="data_reserva">Data para Reserva</label></strong>
+          <strong><label for="data_reserva">{% trans 'Data para Reserva' %}</label></strong>
           <div class="input-group date" id="data_reserva" data-target-input="nearest">
             <input name="data_reserva" type="text" class="form-control datetimepicker-input" value="{{ form.data_reserva.value }}" data-target="#data_reserva"/>
             <div class="input-group-append" data-target="#data_reserva" data-toggle="datetimepicker">
@@ -27,7 +27,7 @@
         <div class="row">
           <div class='col-md-6'>
             <div class="form-group">
-              <strong><label for="hora_inicio">Hora de Início</label></strong>
+              <strong><label for="hora_inicio">{% trans 'Hora de Início' %}</label></strong>
               <div class="input-group date" id="hora_inicio" data-target-input="nearest">
                 <input name="hora_inicio" type="text" class="form-control datetimepicker-input" value="{{ form.hora_inicio.value }}" data-target="#hora_inicio"/>
                 <div class="input-group-append" data-target="#hora_inicio" data-toggle="datetimepicker">
@@ -41,7 +41,7 @@
           </div>
           <div class='col-md-6'>
             <div class="form-group">
-              <strong><label for="hora_fim">Hora de Fim</label></strong>
+              <strong><label for="hora_fim">{% trans 'Hora de Fim' %}</label></strong>
               <div class="input-group date" id="hora_fim" data-target-input="nearest">
                 <input name="hora_fim" type="text" class="form-control datetimepicker-input" value="{{ form.hora_fim.value }}" data-target="#hora_fim"/>
                 <div class="input-group-append" data-target="#hora_fim" data-toggle="datetimepicker">
@@ -56,9 +56,9 @@
         </div>
 
         <div class="form-group">
-          <strong><label for="sala">Salas Multimeios</label></strong>
+          <strong><label for="sala">{% trans 'Salas da Multimeios' %}</label></strong>
           <select name="sala" class="custom-select" id="sala">
-            <option value="0">-- Escolha a Sala --</option>
+            <option value="0">{% trans '-- Escolha a Sala --' %}</option>
             {% for sala in salas %}
               <option 
               {% if sala.id|stringformat:"i" == form.sala.value %}
@@ -75,14 +75,14 @@
         </div>
           
         <div class="form-group">
-          <strong><label for="motivo">Motivo da Reserva</label></strong>
-          <textarea name="motivo" placeholder="Coloque o motivo de sua reserva." class="form-control" id="motivo" rows="3">{% if form.motivo.value != None %}{{form.motivo.value}}{% endif %}</textarea>
+          <strong><label for="motivo">{% trans 'Motivo da Reserva' %}</label></strong>
+          <textarea name="motivo" placeholder="{% trans 'Coloque o motivo de sua reserva.' %}" class="form-control" id="motivo" rows="3">{% if form.motivo.value != None %}{{form.motivo.value}}{% endif %}</textarea>
           {% for error in form.motivo.errors %}
             <span class="text-danger">{{error}}</span>
           {% endfor %}
         </div>
 
-        <button class="btn btn-info" type="submit">Pedir Reserva</button>
+        <button class="btn btn-info" type="submit">{% trans 'Pedir Reserva' %}</button>
       
       </form>
       </br>

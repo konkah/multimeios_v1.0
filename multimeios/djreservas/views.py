@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -152,7 +153,7 @@ def index(request):
         'semana': semana, 
         'mes': mes, 
         'hoje': hoje,
-        'calendario': calendario
+        'calendario': calendario,
     })
 
 @staff_member_required(login_url='/conta/login')
@@ -425,5 +426,5 @@ def calendario(request):
         'semana': semana, 
         'mes': mes, 
         'hoje': hoje,
-        'calendario': calendario
+        'calendario': calendario,
     })

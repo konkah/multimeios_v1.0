@@ -1,0 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-28 23:11-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: djreservas/templates/djreservas/base.html:58
+#: djreservas/templates/djreservas/base.html:112
+msgid "Formulário"
+msgstr "Form"
+
+#: djreservas/templates/djreservas/base.html:61
+#: djreservas/templates/djreservas/base.html:115
+msgid "Calendário"
+msgstr "Calendar"
+
+#: djreservas/templates/djreservas/base.html:64
+#: djreservas/templates/djreservas/base.html:118
+msgid "Contato"
+msgstr "Contact"
+
+#: djreservas/templates/djreservas/base.html:70
+msgid "Trocar Senha"
+msgstr "Change Password"
+
+#: djreservas/templates/djreservas/base.html:72
+msgid "Sair"
+msgstr "Logout"
+
+#: djreservas/templates/djreservas/base.html:95
+msgid "Navegação"
+msgstr "Navegation"
+
+#: djreservas/templates/djreservas/base.html:96
+msgid "Nossa Localização"
+msgstr "Our Location"
+
+#: djreservas/templates/djreservas/forms.html:7
+msgid " Reservas "
+msgstr "Reservations"
+
+#: djreservas/templates/djreservas/forms.html:15
+msgid "Data para Reserva"
+msgstr "Date for Reservation"
+
+#: djreservas/templates/djreservas/forms.html:30
+msgid "Hora de Início"
+msgstr "Hour's Begining"
+
+#: djreservas/templates/djreservas/forms.html:44
+msgid "Hora de Fim"
+msgstr "Hour's Ending"
+
+#: djreservas/templates/djreservas/forms.html:59
+msgid "Salas da Multimeios"
+msgstr "Room's Multimeios"
+
+#: djreservas/templates/djreservas/forms.html:61
+msgid "-- Escolha a Sala --"
+msgstr ""
+
+#: djreservas/templates/djreservas/forms.html:78
+msgid "Motivo da Reserva"
+msgstr ""
+
+#: djreservas/templates/djreservas/forms.html:79
+msgid "Coloque o motivo de sua reserva."
+msgstr ""
+
+#: djreservas/templates/djreservas/forms.html:85
+msgid "Pedir Reserva"
+msgstr ""
+
+#: multimeios/settings.py:118
+msgid "Português Brasileiro"
+msgstr ""
+
+#: multimeios/settings.py:119
+msgid "English"
+msgstr ""
+
+#: multimeios/settings.py:120
+msgid "French"
+msgstr ""
+
+#: multimeios/settings.py:121
+msgid "Finnish"
+msgstr ""
