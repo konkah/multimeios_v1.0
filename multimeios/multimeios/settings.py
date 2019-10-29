@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ob7bzxjszl=t9u)cy8w-jfxdtl^v6t5v5lj8r#1ljq$hyd^)qa'
+
+#-----------------------------
+
+# secret.key file should be ignored by git,
+# so the secret key is kept secret
+SECRET_FILE = os.path.join(BASE_DIR, 'secret.key')
+
+# try to get the secret from a file
+try:
+    SECRET_KEY = open(SECRET_FILE).read().strip()
+
+# if the file do not exists, generate the file
+except IOError:
+    # generate new key (uses "from django... import..." at the beginning of the file)
+    SECRET_KEY = get_random_secret_key()
+    # save on the file, to keep the same next time
+    open(SECRET_FILE, 'w+').write(SECRET_KEY)
+
+# this would get key from environment
+#SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+#-----------------------------
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
