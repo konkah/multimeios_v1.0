@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext as _
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.shortcuts import render
 from django.forms.utils import ErrorList
@@ -8,6 +8,7 @@ from .forms import ReservaForm
 from .models import Sala, Reserva
 from datetime import datetime
 from dateutil.relativedelta import *
+from django.core.management.utils import get_random_secret_key
 
 # Create your views here.
 # Templates que serão visualizados no site
@@ -26,6 +27,11 @@ def index(request):
     mes_seguinte = hoje + relativedelta(months=1)
 
     return render(request, 'djreservas/index.html')
+
+@staff_member_required(login_url='/conta/login')
+def key(request):
+    key = get_random_secret_key()
+    return HttpResponse(key)
 
 @staff_member_required(login_url='/conta/login')
 def forms(request):
