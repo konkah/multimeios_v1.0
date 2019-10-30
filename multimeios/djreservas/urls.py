@@ -10,5 +10,4 @@ urlpatterns = [
     path('forms/', views.forms, name='forms'),
     path('calendario/', views.calendario, name='calendario'),
     path('success/', views.success, name='success'),
-    path('key/', views.key, name='key'),
 ]

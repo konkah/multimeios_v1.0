@@ -1,56 +1,26 @@
 <!-- Função do Django para estender o código do base.html, como
-resultado, mostrando o menu e o rodapé já pronto nesse código
+resultado, mostrando o menu e o rodapé já pronto esse código
 HTML. -->
 {% extends 'djreservas/base.html' %}
 {% load i18n %}
 <!-- Função do Django para início dos novos códigos no index.html -->
 {% block content %}
-<section>
+<section class="salas-semana">
     <div class="row">
-        <div class="col-sm">
-            sala 1
-            <ul class="list-group">
-                <li class="list-group-item">
-                    reserva 1
-                </li>
-                <li class="list-group-item">
-                    reserva 2
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm">
-            sala 1
-            <ul class="list-group">
-                <li class="list-group-item">
-                    reserva 1
-                </li>
-                <li class="list-group-item">
-                    reserva 2
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm">
-            sala 1
-            <ul class="list-group">
-                <li class="list-group-item">
-                    reserva 1
-                </li>
-                <li class="list-group-item">
-                    reserva 2
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm">
-            sala 1
-            <ul class="list-group">
-                <li class="list-group-item">
-                    reserva 1
-                </li>
-                <li class="list-group-item">
-                    reserva 2
-                </li>
-            </ul>
-        </div>
+        {% for sala in salas %}
+            <div class="col-sm">
+                {{sala.nome}}
+                <ul class="list-group">
+                    {% for reserva in sala.reservas%}
+                        <li class="list-group-item">
+                            {{ reserva.responsavel_cliente.get_full_name }} - 
+                            {{reserva.data_reserva|date:'d/m/Y' }} -
+                            {{ reserva.hora_inicio|date:'H:i' }} a {{ reserva.hora_fim|date:'H:i' }}   
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

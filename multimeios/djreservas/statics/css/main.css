@@ -1,3 +1,8 @@
 .day{
 	min-height: 160px;
 }
+
+.salas-semana{
+	min-height: 400px;
+	margin: 20px;
+}

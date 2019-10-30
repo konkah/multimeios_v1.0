@@ -18,20 +18,33 @@ from django.core.management.utils import get_random_secret_key
 
 @staff_member_required(login_url='/conta/login')
 def success(request):
-    return render(request, 'djreservas/success.html')
+    return render(request, 'djreservas/success.html', {
+        'nome': request.user.get_full_name(),
+    })
 
 @staff_member_required(login_url='/conta/login')
 def index(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()
-    mes_seguinte = hoje + relativedelta(months=1)
+    semana_seguinte = hoje + relativedelta(days=7)
 
-    return render(request, 'djreservas/index.html')
+    salas = Sala.objects.all()
+    salas_semana = []
 
-@staff_member_required(login_url='/conta/login')
-def key(request):
-    key = get_random_secret_key()
-    return HttpResponse(key)
+    for sala in salas:
+        reservas = sala.reserva_set.filter(
+            data_reserva__range = [hoje, semana_seguinte],
+            aprovacao = True
+        )
+        salas_semana.append({
+            'nome': sala.nome, 
+            'reservas': reservas,
+        })
+
+    return render(request, 'djreservas/index.html', {
+        'email': request.user.email,
+        'salas': salas_semana,
+    })
 
 @staff_member_required(login_url='/conta/login')
 def forms(request):
