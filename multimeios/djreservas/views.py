@@ -1,5 +1,5 @@
 from django.utils.translation import ugettext as _
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.shortcuts import render
@@ -15,6 +15,18 @@ from django.core.management.utils import get_random_secret_key
 
 # garante que uma pessoa só pode entrar nessa página se estiver logada
 # se não estiver, é redirecionada para a tela de login
+
+@user_passes_test(lambda u: u.is_superuser, login_url='/conta/login')
+def aprovar(request, reserva_id):
+    hoje = datetime.now().date()
+    reserva = Reserva.objects.get(id=reserva_id)
+    if reserva.data_reserva < hoje:
+        return render(request, 'djreservas/aprovacao_erro.html', {
+            'reserva': reserva,
+        })
+    reserva.aprovacao = True
+    reserva.save()
+    return HttpResponseRedirect(reverse('djreservas:index'))
 
 @login_required(login_url='/conta/login')
 def success(request):

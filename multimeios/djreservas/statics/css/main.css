@@ -1,8 +1,11 @@
 /**/
-/* home.html */
-.home_sessao{
+/* index.html */
+.index_sessao{
 	min-height: 400px;
 	margin: 20px;
+}
+.abre_modal{
+	cursor: pointer;
 }
 
 /* forms.html */
@@ -29,4 +32,13 @@
 .success_change_sessao{
 	min-height: 400px;
 	margin: 20px;
+}
+
+/* aprovacao_erro.html */
+.aprov_erro_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+.footer_error{
+	margin-top: 110px;
 }
