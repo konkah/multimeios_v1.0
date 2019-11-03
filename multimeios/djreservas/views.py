@@ -28,6 +28,18 @@ def aprovar(request, reserva_id):
     reserva.save()
     return HttpResponseRedirect(reverse('djreservas:index'))
 
+@user_passes_test(lambda u: u.is_superuser, login_url='/conta/login')
+def reprovar(request, reserva_id):
+    hoje = datetime.now().date()
+    reserva = Reserva.objects.get(id=reserva_id)
+    if reserva.data_reserva < hoje:
+        return render(request, 'djreservas/reprovacao_erro.html', {
+            'reserva': reserva,
+        })
+    reserva.aprovacao = False
+    reserva.save()
+    return HttpResponseRedirect(reverse('djreservas:index'))
+
 @login_required(login_url='/conta/login')
 def success(request):
     isadmin = request.user.is_superuser

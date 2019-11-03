@@ -37,7 +37,7 @@ HTML. -->
                                     </div>
                                     <div class="modal-footer">
                                         <a href="{% url 'djreservas:aprovar' reserva.id %}" class="btn btn-success">Aprovar</a>
-                                        <a href="#" class="btn btn-danger">Reprovar</a>
+                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">Reprovar</a>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                     </div>
                                   </div>
