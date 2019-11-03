@@ -1,9 +1,7 @@
 {% extends 'djreservas/base.html' %}
 {% load i18n %}
 {% block content %}
-<section>
-  </br>
-  </br>
+<section class="calend_sessao">
     <div class="container-fluid">
       <header>
         <h5 class="display-4 mb-4 text-center">{{nome_mes}}</h5>
@@ -15,7 +13,7 @@
       </header>
       <div class="row border border-right-0 border-bottom-0">
         {% for data in calendario %}
-          <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate {%if not data.ativo %} d-none d-sm-inline-block bg-light text-muted {% endif %}">
+          <div class="calendario col-sm p-2 border border-left-0 border-top-0 text-truncate {%if not data.ativo %} d-none d-sm-inline-block bg-light text-muted {% endif %}">
             <h5 class="row align-items-center">
               <span class="date col-1">{{ data.dia.day }}</span>
               <small class="col d-sm-none text-center text-muted">{{ data.dia.weekday }}</small>
@@ -60,6 +58,4 @@
       </div>
     </div>    
   </section>
-  </br>
-  </br>
 {% endblock %}

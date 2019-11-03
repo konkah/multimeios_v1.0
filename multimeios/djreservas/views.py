@@ -1,5 +1,5 @@
 from django.utils.translation import ugettext as _
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.shortcuts import render
@@ -16,37 +16,44 @@ from django.core.management.utils import get_random_secret_key
 # garante que uma pessoa só pode entrar nessa página se estiver logada
 # se não estiver, é redirecionada para a tela de login
 
-@staff_member_required(login_url='/conta/login')
+@login_required(login_url='/conta/login')
 def success(request):
     return render(request, 'djreservas/success.html', {
         'nome': request.user.get_full_name(),
     })
 
-@staff_member_required(login_url='/conta/login')
+@login_required(login_url='/conta/login')
 def index(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()
     semana_seguinte = hoje + relativedelta(days=7)
 
+    isadmin = request.user.is_superuser
     salas = Sala.objects.all()
     salas_semana = []
 
     for sala in salas:
-        reservas = sala.reserva_set.filter(
+        reservas_aprovadas = sala.reserva_set.filter(
             data_reserva__range = [hoje, semana_seguinte],
             aprovacao = True
         )
+        reservas_pendentes = sala.reserva_set.filter(
+            data_reserva__range = [hoje, semana_seguinte],
+            aprovacao = None
+        )
         salas_semana.append({
             'nome': sala.nome, 
-            'reservas': reservas,
+            'reservas_aprovadas': reservas_aprovadas,
+            'reservas_pendentes': reservas_pendentes,
         })
 
     return render(request, 'djreservas/index.html', {
         'email': request.user.email,
         'salas': salas_semana,
+        'isadmin': isadmin
     })
 
-@staff_member_required(login_url='/conta/login')
+@login_required(login_url='/conta/login')
 def forms(request):
     reservas_feitas = []
     hoje = datetime.now().date()
@@ -185,7 +192,7 @@ def forms(request):
         'reservas_feitas': reservas_feitas,
     })
 
-@staff_member_required(login_url='/conta/login')
+@login_required(login_url='/conta/login')
 def calendario(request):
     hoje = datetime.now().date()
     agora = datetime.now().time()

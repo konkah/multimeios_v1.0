@@ -1,8 +1,32 @@
-.day{
+/**/
+/* home.html */
+.home_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+
+/* forms.html */
+.forms_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+
+/* calendário.html */
+.calend_sessao{
+	margin: 40px;
+}
+.calendario{
 	min-height: 160px;
 }
 
-.salas-semana{
+/* success.html */
+.success_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+
+/* password_change_success.html */
+.success_change_sessao{
 	min-height: 400px;
 	margin: 20px;
 }

@@ -5,15 +5,30 @@ HTML. -->
 {% load i18n %}
 <!-- Função do Django para início dos novos códigos no index.html -->
 {% block content %}
-<section class="salas-semana">
+<section class="home_sessao">
     <div class="row">
-        {% for sala in salas %}
+        </h6>{% for sala in salas %}
             <div class="col-sm">
-                {{sala.nome}}
+                <h5><strong>{{sala.nome}}</strong></h5>
+                </br>
+                {% if isadmin %}
+                    <i><h6>Pendentes</h6></i>
+                    <ul class="list-group">
+                        {% for reserva in sala.reservas_pendentes%}
+                            <li class="list-group-item list-group-item-warning">
+                                {{reserva.responsavel_cliente.get_full_name }}: 
+                                {{reserva.data_reserva|date:'d/m/Y' }} -
+                                {{ reserva.hora_inicio|date:'H:i' }} a {{ reserva.hora_fim|date:'H:i' }}   
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    </br>
+                    <i><h6>Aprovadas</h6></i>
+                {% endif %}
                 <ul class="list-group">
-                    {% for reserva in sala.reservas%}
-                        <li class="list-group-item">
-                            {{ reserva.responsavel_cliente.get_full_name }} - 
+                    {% for reserva in sala.reservas_aprovadas%}
+                        <li class="list-group-item list-group-item-primary">
+                            {{reserva.responsavel_cliente.get_full_name }}: 
                             {{reserva.data_reserva|date:'d/m/Y' }} -
                             {{ reserva.hora_inicio|date:'H:i' }} a {{ reserva.hora_fim|date:'H:i' }}   
                         </li>
