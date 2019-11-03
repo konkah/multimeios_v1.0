@@ -68,7 +68,13 @@ outras línguas. -->
             {% endif %}
           </ul>
           <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{email}}</a>
+            <a class="nav-link dropdown-toggle text-right" 
+                href="#" 
+                id="userDropdown" 
+                role="button" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="true"><small>{{user.get_full_name}}</br>{{user.email}}</small></a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
               <a class="dropdown-item" href="{% url 'password_change' %}">{% trans 'Trocar Senha' %}</a>
               <div class="dropdown-divider"></div>
