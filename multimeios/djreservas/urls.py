@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('forms/', views.forms, name='forms'),
     path('calendario/', views.calendario, name='calendario'),
+    #path('calendario/<int:ano_mes>', views.calendario, name='calendario_ano_mes'),
     path('success/', views.success, name='success'),
     path('aprovar/<int:reserva_id>',views.aprovar, name='aprovar'),
     path('reprovar/<int:reserva_id>',views.reprovar, name='reprovar'),
