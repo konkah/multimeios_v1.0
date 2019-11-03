@@ -18,8 +18,11 @@ from django.core.management.utils import get_random_secret_key
 
 @login_required(login_url='/conta/login')
 def success(request):
+    isadmin = request.user.is_superuser
+
     return render(request, 'djreservas/success.html', {
         'nome': request.user.get_full_name(),
+        'isadmin': isadmin,
     })
 
 @login_required(login_url='/conta/login')
@@ -50,11 +53,13 @@ def index(request):
     return render(request, 'djreservas/index.html', {
         'email': request.user.email,
         'salas': salas_semana,
-        'isadmin': isadmin
+        'isadmin': isadmin,
     })
 
 @login_required(login_url='/conta/login')
 def forms(request):
+    isadmin = request.user.is_superuser
+
     reservas_feitas = []
     hoje = datetime.now().date()
     agora = datetime.now().time()
@@ -190,10 +195,13 @@ def forms(request):
         'hoje': hoje,
         'calendario': calendario,
         'reservas_feitas': reservas_feitas,
+        'isadmin': isadmin,
     })
 
 @login_required(login_url='/conta/login')
 def calendario(request):
+    isadmin = request.user.is_superuser
+
     hoje = datetime.now().date()
     agora = datetime.now().time()
     mes_seguinte = hoje + relativedelta(months=1)
@@ -324,4 +332,5 @@ def calendario(request):
         'mes': mes, 
         'hoje': hoje,
         'calendario': calendario,
+        'isadmin': isadmin,
     })
