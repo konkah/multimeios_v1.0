@@ -10,8 +10,10 @@ class Sala(models.Model):
     capacidade = models.IntegerField('Capacidade de Pessoas', default=0)
     recursos_fixos = models.CharField('Recursos Fixos', max_length=2000)
     cores = [
-        ('red', 'vermelho'),
-        ('blue', 'azul'),
+        ('red', 'Vermelho'),
+        ('blue', 'Azul'),
+        ('green', 'Verde'),
+        ('orange', 'Laranja'),
     ]
     cor = models.CharField(max_length=20, choices=cores, default='blue')
 
