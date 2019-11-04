@@ -176,9 +176,11 @@ def forms(request):
     })
 
 @login_required(login_url='/conta/login')
-def calendario(request):
+def calendario(request, ano_mes):
     isadmin = request.user.is_superuser
 
+    ano = int(ano_mes / 100)
+    mes = ano_mes % 100
     hoje = datetime.now().date()
 
     # Listagem de sala para o Select (pega todas as salas do banco de dados):
@@ -188,13 +190,16 @@ def calendario(request):
     
     meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
      "Outubro", "Novembro","Dezembro"]
-    nome_mes = meses[hoje.month-1] + " - " + str(hoje.year)
+    nome_mes = meses[mes-1] + " - " + str(ano)
     semana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
     
     # Para calcular quando começa e quando termina o calendário
-    primeiro_dia = hoje - relativedelta(days = hoje.day-1)
+    primeiro_dia = datetime(ano, mes, 1).date()
+    primeiro_dia_anterior = primeiro_dia - relativedelta(months = 1)
     primeiro_dia_seguinte = primeiro_dia + relativedelta(months = 1)
     ultimo_dia = primeiro_dia_seguinte - relativedelta(days = 1)
+    ano_mes_anterior = primeiro_dia_anterior.year * 100 + primeiro_dia_anterior.month
+    ano_mes_seguinte = primeiro_dia_seguinte.year * 100 + primeiro_dia_seguinte.month
 
     dias_antes = primeiro_dia.weekday() + 1 % 7
     dias_depois = 6 - (ultimo_dia.weekday() + 1 % 7)
@@ -209,8 +214,6 @@ def calendario(request):
     for d in range(1, dias_depois + 1):
         dia = ultimo_dia + relativedelta(days = d)
         vetor_dias.append(dia)
-
-    mes = hoje.month
     
     # Listagem de sala para o Select (pega todas as salas do banco de dados):
     primeira_data_reserva = datetime.combine(vetor_dias[0], datetime.min.time())
@@ -237,4 +240,12 @@ def calendario(request):
         'hoje': hoje,
         'calendario': calendario,
         'isadmin': isadmin,
+        'ano_mes_anterior': ano_mes_anterior,
+        'ano_mes_seguinte': ano_mes_seguinte,
     })
+
+@login_required(login_url='/conta/login')
+def calendario_hoje(request):
+    hoje = datetime.now().date()
+    ano_mes = hoje.year * 100 + hoje.month
+    return calendario(request, ano_mes)

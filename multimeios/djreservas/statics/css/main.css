@@ -21,6 +21,9 @@
 .calendario{
 	min-height: 160px;
 }
+.nav_calendario:hover{
+	text-decoration: none;
+}
 
 /* success.html */
 .success_sessao{

@@ -59,7 +59,7 @@ outras línguas. -->
               <a class="nav-link" href="{% url 'djreservas:forms' %}">{% trans 'Formulário' %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'djreservas:calendario' %}">{% trans 'Calendário' %}</a>
+              <a class="nav-link" href="{% url 'djreservas:calendario_hoje' %}">{% trans 'Calendário' %}</a>
             </li>
             {% if isadmin %}
               <li class="nav-item">
@@ -122,7 +122,7 @@ outras línguas. -->
                   <td><a href="{% url 'djreservas:forms' %}" style="color:grey" title="Pesquisa" class="linkdestaq">{% trans 'Formulário' %}</a></td>
                 </tr>
                 <tr>
-                  <td><a href="{% url 'djreservas:calendario' %}" style="color:grey" title="Ensino" class="linkdestaq">{% trans 'Calendário' %}</a></td>
+                  <td><a href="{% url 'djreservas:calendario_hoje' %}" style="color:grey" title="Ensino" class="linkdestaq">{% trans 'Calendário' %}</a></td>
                 </tr>
                 <tr>
                   <td><a href="contato.html" title="Contato" style="color:grey" class="linkdestaq">{% trans 'Contato' %}</a></td>
