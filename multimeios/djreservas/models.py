@@ -9,6 +9,11 @@ class Sala(models.Model):
     nome = models.CharField('Nome da Sala',max_length=200)
     capacidade = models.IntegerField('Capacidade de Pessoas', default=0)
     recursos_fixos = models.CharField('Recursos Fixos', max_length=2000)
+    cores = [
+        ('red', 'vermelho'),
+        ('blue', 'azul'),
+    ]
+    cor = models.CharField(max_length=20, choices=cores, default='blue')
 
     def __str__(self):
         return self.nome + " ("+self.recursos_fixos+")"

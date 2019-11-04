@@ -7,9 +7,9 @@ HTML. -->
 {% block content %}
 <section class="index_sessao">
     <div class="row">
-        </h6>{% for sala in salas %}
+        {% for sala in salas %}
             <div class="col-sm">
-                <h5><strong>{{sala.nome}}</strong></h5>
+                <h5 style="color: {{sala.cor}};"><strong>{{sala.nome}}</strong></h5>
                 </br>
                 {% if isadmin %}
                     <i><h6>Pendentes</h6></i>

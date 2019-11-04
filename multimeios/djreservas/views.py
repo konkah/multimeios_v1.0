@@ -70,6 +70,7 @@ def index(request):
         )
         salas_semana.append({
             'nome': sala.nome, 
+            'cor': sala.cor,
             'reservas_aprovadas': reservas_aprovadas,
             'reservas_pendentes': reservas_pendentes,
         })
