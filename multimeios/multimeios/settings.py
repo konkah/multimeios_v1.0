@@ -165,5 +165,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djreservas', 'statics'),
 ]
 
-LOGIN_REDIRECT_URL = '/djreservas/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/conta/login/'
