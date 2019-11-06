@@ -27,7 +27,7 @@
               <p class="d-sm-none">No events</p>
             {% else %}
               {% for reserva in data.reservas %}
-                <button type="button" class="btn btn-sm {% if data.ativo %} btn-primary {% else %} btn-default {% endif %}" data-toggle="modal" data-target="#reserva_{{reserva.id}}">
+                <button type="button" class="btn btn-sm" style="color:white; {% if not data.ativo %} opacity: 0.50; {% endif %} background: {{reserva.sala.cor}}" data-toggle="modal" data-target="#reserva_{{reserva.id}}">
                   {{ reserva.sala.nome }} -
                   {{ reserva.hora_inicio|date:'H:i' }}
                 </button>

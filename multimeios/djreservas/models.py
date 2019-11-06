@@ -27,7 +27,7 @@ class Reserva(models.Model):
     hora_inicio = models.TimeField('Hora Início', default=datetime.time(0, 00)) #time | -----
     hora_fim = models.TimeField('Hora Fim', default=datetime.time(0, 00)) #time | time
     motivo = models.CharField(max_length=2000)
-    aprovacao = models.BooleanField('Aprovação', null = True)
+    aprovacao = models.BooleanField('Aprovação', null=True)
 
     def __str__(self):
         string = self.sala.nome + " ( " + str(self.data_reserva) +", de " + str(self.hora_inicio) +" até " + str(self.hora_fim) + " )."
@@ -38,5 +38,3 @@ class Reserva(models.Model):
         else:
             string = string + " Negada" 
         return string
-    
-
