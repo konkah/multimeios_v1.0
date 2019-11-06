@@ -33,6 +33,7 @@ HTML. -->
                                       <strong>Sala:</strong> {{ reserva.sala }}</br>
                                       <strong>Horário:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
                                       <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
+                                      <strong>Contato:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
                                       <strong>Motivo:</strong> {{ reserva.motivo }}
                                     </div>
                                     <div class="modal-footer">
