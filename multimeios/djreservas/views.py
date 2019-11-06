@@ -177,15 +177,12 @@ def forms(request):
     })
 
 @login_required(login_url='/conta/login')
-def calendario(request, ano_mes):
+def calendario(request, ano_mes, sala_id):
     isadmin = request.user.is_superuser
 
     ano = int(ano_mes / 100)
     mes = ano_mes % 100
     hoje = datetime.now().date()
-
-    # Listagem de sala para o Select (pega todas as salas do banco de dados):
-    salas = Sala.objects.all()
     
     # pega o que será exibido no topo do calendário (ex: "Outubro - 2019")
     
@@ -224,12 +221,18 @@ def calendario(request, ano_mes):
         aprovacao = True,
     )
     
+    if sala_id != 0:
+        reservas = reservas.filter(sala__id=sala_id)
+
     calendario = []
     for dia in vetor_dias:
         reservas_dia=reservas.filter(data_reserva=dia)
         ativo = dia.month == mes and dia.weekday != 5 and dia.weekday != 6 and dia >= hoje
         data  = {'dia':dia, 'reservas':reservas_dia, 'ativo':ativo,}
         calendario.append(data)
+    
+    # Listagem de sala para o Select (pega todas as salas do banco de dados):
+    salas = Sala.objects.all()
     
     # Retorno na tela
     return render(request, 'djreservas/calendario.html', {
@@ -243,10 +246,17 @@ def calendario(request, ano_mes):
         'isadmin': isadmin,
         'ano_mes_anterior': ano_mes_anterior,
         'ano_mes_seguinte': ano_mes_seguinte,
+        'ano_mes': ano_mes,
+        'sala_id': sala_id,
     })
 
 @login_required(login_url='/conta/login')
 def calendario_hoje(request):
     hoje = datetime.now().date()
     ano_mes = hoje.year * 100 + hoje.month
-    return calendario(request, ano_mes)
+    return calendario(request, ano_mes, 0)
+
+@login_required(login_url='/conta/login')
+def calendario_todas(request, ano_mes):
+    
+    return calendario(request, ano_mes, 0)

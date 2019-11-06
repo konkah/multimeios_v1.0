@@ -5,10 +5,26 @@
     <div class="container-fluid">
       <header>
         <h5 class="display-4 mb-4 text-center">
-          <a class="nav_calendario" href="{% url 'djreservas:calendario' ano_mes_anterior %}">&lt;</a>
+          <a class="nav_calendario" href="
+            {% if sala_id == 0 %}
+              {% url 'djreservas:calendario_todas' ano_mes_anterior %}
+            {% else %}
+              {% url 'djreservas:calendario' ano_mes_anterior sala_id %}
+            {% endif %}">&lt;</a>
           {{nome_mes}}
-          <a class="nav_calendario" href="{% url 'djreservas:calendario' ano_mes_seguinte %}">&gt;</a>
+          <a class="nav_calendario" href="
+            {% if sala_id == 0 %}
+              {% url 'djreservas:calendario_todas' ano_mes_seguinte %}
+            {% else %}
+              {% url 'djreservas:calendario' ano_mes_seguinte sala_id %}
+            {% endif %}">&gt;</a>
         </h5>
+        <a href="{% url 'djreservas:calendario_todas' ano_mes %}" class="btn filtro_sala" style="color:white; background: gray">Todas</a>
+        {% for sala in salas %}
+          <a href="{% url 'djreservas:calendario' ano_mes sala.id %}" class="btn filtro_sala" style="color:white; background: {{sala.cor}}">{{sala.nome}}</a>
+        {% endfor %}
+        </br>
+        </br>
         <div class="row d-none d-sm-flex p-1 bg-dark text-white">
           {% for dia in semana %}
             <h5 class="col-sm p-1 text-center">{{dia}}</h5>

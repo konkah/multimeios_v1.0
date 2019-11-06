@@ -21,8 +21,14 @@
 .calendario{
 	min-height: 160px;
 }
+.nav_calendario{
+	color: rgb(33, 37, 41);
+}
 .nav_calendario:hover{
 	text-decoration: none;
+}
+.filtro_sala{
+	margin: 0 13px;
 }
 
 /* success.html */
