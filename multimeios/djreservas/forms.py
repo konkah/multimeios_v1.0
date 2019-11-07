@@ -7,5 +7,6 @@ class ReservaForm(forms.Form):
     hora_inicio = forms.TimeField()
     hora_fim = forms.TimeField()
     sala = forms.IntegerField()
+    usuario = forms.IntegerField(required=False)
     motivo = forms.CharField(required=False)
     

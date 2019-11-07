@@ -7,6 +7,9 @@
 .abre_modal{
 	cursor: pointer;
 }
+.tit_semana{
+	text-decoration: rgb(33, 37, 41);
+}
 
 /* forms.html */
 .forms_sessao{

@@ -9,6 +9,7 @@ from .models import Sala, Reserva
 from datetime import datetime
 from dateutil.relativedelta import *
 from django.core.management.utils import get_random_secret_key
+from django.contrib.auth.models import User
 
 # Create your views here.
 # Templates que serão visualizados no site
@@ -101,6 +102,11 @@ def forms(request):
         sala_id = form.data["sala"]
         if sala_id == "0" or sala_id == '' or sala_id == None:
             form.add_error("sala", "Por favor, escolha uma sala.")
+        
+        if isadmin:
+            usuario_id = form.data["usuario"]
+            if usuario_id == "0":
+                form.add_error("usuario", "Por favor, escolha um usuário.")
 
         # A data vem em formato texto do formulário
         data_reserva_texto = form.data["data_reserva"]
@@ -123,9 +129,7 @@ def forms(request):
             reservas_feitas = Reserva.objects.filter(data_reserva=data_reserva, aprovacao=True, sala__id=sala_id)
             if data_reserva.date() < hoje:
                 form.add_error("data_reserva", "Não é possível reservar datas passadas.")
-            elif data_reserva.weekday() == 6 or data_reserva.weekday() == 5:
-                form.add_error("data_reserva", "Não é possível reservar nos sábados ou domingos.")
-            elif data_reserva.date() > mes_seguinte:
+            elif data_reserva.date() > mes_seguinte and not isadmin:
                 form.add_error("data_reserva", "Reserva não pode ser feita com mais de 1 mês de antecedência.")
             elif hora_inicio_texto != '' and hora_fim_texto != '':
                 for reserva_feita in reservas_feitas:
@@ -151,12 +155,16 @@ def forms(request):
             reserva.motivo = form.data["motivo"]
             
             # como precisamos da sala em si para colocar na reserva, buscamos no banco pelo id
-            salas = Sala.objects.filter(id = sala_id)
-            # o filtro devolve uma lista com um item só, pegamos o primeiro item
-            reserva.sala = salas[0]
+            sala = Sala.objects.get(id = sala_id)
+            reserva.sala = sala
 
             # esse usuário que está no request é o usuário que está logado
-            reserva.responsavel_cliente = request.user
+            if isadmin:
+                usuario = User.objects.get(id = usuario_id)
+                reserva.responsavel_cliente = usuario
+            else:
+                reserva.responsavel_cliente = request.user
+            
 
             reserva.save()
             return HttpResponseRedirect(reverse('djreservas:success'))
@@ -167,13 +175,15 @@ def forms(request):
 
     # Listagem de sala para o Select (pega todas as salas do banco de dados):
     salas = Sala.objects.all()
-    
+    usuarios = User.objects.all()
+
     # Retorno na tela
     return render(request, 'djreservas/forms.html', {
         'form': form, 
         'salas': salas, 
         'email': request.user.email,
         'isadmin': isadmin,
+        'usuarios': usuarios,
     })
 
 @login_required(login_url='/conta/login')

@@ -56,7 +56,7 @@ outras línguas. -->
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'djreservas:forms' %}">{% trans 'Formulário' %}</a>
+              <a class="nav-link" href="{% url 'djreservas:forms' %}">{% trans 'Agendar' %}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'djreservas:calendario_hoje' %}">{% trans 'Calendário' %}</a>
@@ -102,7 +102,9 @@ outras línguas. -->
 
       <table class="conteudo_rodape" width="100%" cellspacing="0" cellpadding="5" border="0">
           <tbody><tr>
-            <td width="265" valign="top"><span class="navbar-brand">{% trans 'Navegação' %}</span></td>
+            {% if user.is_active %}
+              <td width="265" valign="top"><span class="navbar-brand">{% trans 'Navegação' %}</span></td>
+            {% endif %}
             <td width="385" valign="top"><span class="navbar-brand">{% trans 'Nossa Localização' %}</span></td>
             <td valign="top"><table width="40%" cellspacing="0" cellpadding="0" border="0">
               <tbody><tr>
@@ -113,19 +115,21 @@ outras línguas. -->
               </tbody></table></td>
           </tr>
           <tr>
+            {% if user.is_active %}
             <td width="265" valign="top"><table width="80%" cellspacing="3" cellpadding="0" border="0">
               <tbody>
                 <tr>
                   <td><a href="{% url 'djreservas:index' %}" style="color:grey" title="institucional" class="linkdestaq">Home</a></td>
                 </tr>
                 <tr>
-                  <td><a href="{% url 'djreservas:forms' %}" style="color:grey" title="Pesquisa" class="linkdestaq">{% trans 'Formulário' %}</a></td>
+                  <td><a href="{% url 'djreservas:forms' %}" style="color:grey" title="Pesquisa" class="linkdestaq">{% trans 'Agendar' %}</a></td>
                 </tr>
                 <tr>
                   <td><a href="{% url 'djreservas:calendario_hoje' %}" style="color:grey" title="Ensino" class="linkdestaq">{% trans 'Calendário' %}</a></td>
                 </tr>
-            </tbody></table>
-          </td>
+              </tbody></table>
+            </td>
+            {% endif%}
             <td class="font_rodape2" style="color:grey" width="385" valign="top"> Rua Cora Coralina, 350 – Campinas/SP<br>
               Cidade Universitária "Zeferino Vaz" s/n<br>
               Campinas - São Paulo - Brasil<br>

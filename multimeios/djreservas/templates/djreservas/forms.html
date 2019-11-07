@@ -73,7 +73,28 @@
             <span class="text-danger">{{error}}</span>
           {% endfor %}
         </div>
-          
+        
+        {% if isadmin %}
+        <div class="form-group">
+          <strong><label for="usuario">{% trans 'Responsável pela Reserva' %}</label></strong>
+          <select name="usuario" class="custom-select" id="usuario">
+            <option value="0">{% trans '-- Escolha o Responsável --' %}</option>
+            {% for usuario in usuarios %}
+              <option
+              {% if usuario.id|stringformat:"i" == form.usuario.value %}
+                selected 
+              {% endif %} 
+              value="{{usuario.id}}">
+                {{usuario}} 
+            </option>
+            {% endfor %}
+          </select>
+          {% for error in form.usuario.errors %}
+            <span class="text-danger">{{error}}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="form-group">
           <strong><label for="motivo">{% trans 'Motivo da Reserva' %}</label></strong>
           <textarea name="motivo" placeholder="{% trans 'Coloque o motivo de sua reserva.' %}" class="form-control" id="motivo" rows="3">{% if form.motivo.value != None %}{{form.motivo.value}}{% endif %}</textarea>

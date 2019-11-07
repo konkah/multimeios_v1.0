@@ -6,6 +6,8 @@ HTML. -->
 <!-- Função do Django para início dos novos códigos no index.html -->
 {% block content %}
 <section class="index_sessao">
+    <h4 class="tit_semana"><strong>Reservas das salas durante a semana:</strong></h4>
+    </br>
     <div class="row">
         {% for sala in salas %}
             <div class="col-sm">
@@ -16,8 +18,8 @@ HTML. -->
                     <ul class="list-group">
                         {% for reserva in sala.reservas_pendentes%}
                             <li class="list-group-item list-group-item-warning abre_modal" data-toggle="modal" data-target="#reserva_{{reserva.id}}">
-                                {{reserva.responsavel_cliente.get_full_name }}: 
-                                {{reserva.data_reserva|date:'d/m/Y' }} -
+                                {{ reserva.responsavel_cliente.get_full_name }}: 
+                                {{ reserva.data_reserva|date:'d/m/Y' }} -
                                 {{ reserva.hora_inicio|date:'H:i' }} a {{ reserva.hora_fim|date:'H:i' }}   
                             </li>
                             <div class="modal fade" id="reserva_{{reserva.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -30,11 +32,11 @@ HTML. -->
                                       </button>
                                     </div>
                                     <div class="modal-body text-left">
-                                      <strong>Sala:</strong> {{ reserva.sala }}</br>
-                                      <strong>Horário:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
-                                      <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
-                                      <strong>Contato:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
-                                      <strong>Motivo:</strong> {{ reserva.motivo }}
+                                        <strong>Sala:</strong> {{ reserva.sala }}</br>
+                                        <strong>Horário:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
+                                        <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
+                                        <strong>Contato:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
+                                        <strong>Motivo:</strong> {{ reserva.motivo }}
                                     </div>
                                     <div class="modal-footer">
                                         <a href="{% url 'djreservas:aprovar' reserva.id %}" class="btn btn-success">Aprovar</a>
@@ -51,10 +53,10 @@ HTML. -->
                 {% endif %}
                 <ul class="list-group">
                     {% for reserva in sala.reservas_aprovadas%}
-                        <li class="list-group-item list-group-item-primary">
-                            {{reserva.responsavel_cliente.get_full_name }}: 
-                            {{reserva.data_reserva|date:'d/m/Y' }} -
-                            {{ reserva.hora_inicio|date:'H:i' }} a {{ reserva.hora_fim|date:'H:i' }}   
+                        <li class="list-group-item list-group-item-primary abre_modal">
+                            {{ reserva.responsavel_cliente.get_full_name }}: 
+                            {{ reserva.data_reserva|date:'d/m/Y' }} -
+                            {{ reserva.hora_inicio|date:'H:i' }} a {{ reserva.hora_fim|date:'H:i' }}
                         </li>
                     {% endfor %}
                 </ul>
