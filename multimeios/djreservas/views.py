@@ -179,6 +179,8 @@ def forms(request):
     # Criação da condição para o formulário ficar em branco
     else:
         form = ReservaForm()
+        if request.GET.get("data_reserva"):
+            form.fields['data_reserva'].initial = request.GET["data_reserva"]
 
     # Listagem de sala para o Select (pega todas as salas do banco de dados):
     salas = Sala.objects.all()

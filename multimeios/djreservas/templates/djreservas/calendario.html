@@ -33,11 +33,24 @@
       </header>
       <div class="row border border-right-0 border-bottom-0">
         {% for data in calendario %}
-          <div class="calendario col-sm p-2 border border-left-0 border-top-0 text-truncate {%if not data.ativo %} d-none d-sm-inline-block bg-light text-muted {% endif %}">
+          <div class="calendario col-sm p-2 border border-left-0 border-top-0 text-truncate 
+                    {%if not data.ativo %} 
+                      d-none d-sm-inline-block bg-light text-muted 
+                    {% else %} 
+                      form-reserva abre_link 
+                    {% endif %}" data-day="{{ data.dia|date:'d/m/Y' }}">
             <h5 class="row align-items-center">
-              <span class="date col-1">{{ data.dia.day }}</span>
+              {% if not data.ativo %}
+                <span class="date col-1">{{ data.dia.day }}</span>
+              {% else %}
+                <span class="date col-1 abre_link"><a class="abre_link" href="{% url 'djreservas:forms' %}?data_reserva={{ data.dia|date:'d/m/Y' }}">{{ data.dia.day }}</a></span>
+              {% endif %}
               <small class="col d-sm-none text-center text-muted">{{ data.dia.weekday }}</small>
-              <span class="col-1"></span>
+              {% if not data.ativo %}
+                <span class="col-1">------------</span>
+              {% else %}
+                <span class="col-1"><a class="" href="{% url 'djreservas:forms' %}?data_reserva={{ data.dia|date:'d/m/Y' }}"><small>Agendar</small></a></span>
+              {% endif %}
             </h5>
             {% if not data.reservas %}
               <p class="d-sm-none">No events</p>

@@ -33,6 +33,12 @@
 .filtro_sala{
 	margin: 0 13px;
 }
+.abre_link{
+	cursor: pointer;
+}
+.color{
+	background-color: rgb(30,144,255);
+}
 
 /* success.html */
 .success_sessao{
