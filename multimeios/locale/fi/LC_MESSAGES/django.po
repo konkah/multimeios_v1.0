@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-28 23:11-0300\n"
+"POT-Creation-Date: 2019-11-11 18:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: djreservas/templates/djreservas/base.html:58
-#: djreservas/templates/djreservas/base.html:112
-msgid "Formulário"
+#: djreservas/templates/djreservas/aprovacao_erro.html:8
+#: djreservas/templates/djreservas/reprovacao_erro.html:8
+msgid "uma reserva do dia {{reserva.data_reserva|date:"
 msgstr ""
 
-#: djreservas/templates/djreservas/base.html:61
-#: djreservas/templates/djreservas/base.html:115
+#: djreservas/templates/djreservas/aprovacao_erro.html:13
+#: djreservas/templates/djreservas/reprovacao_erro.html:13
+msgid ""
+"Você pode voltar para a área de reserva indo na <b><i>Home</i></b>.</"
+"br>Clicando neste link."
+msgstr ""
+
+#: djreservas/templates/djreservas/base.html:16
+#: djreservas/templates/djreservas/calendario.html:68
+#: djreservas/templates/djreservas/index.html:29
+#: djreservas/templates/djreservas/index.html:65
+msgid "Multimeios"
+msgstr ""
+
+#: djreservas/templates/djreservas/base.html:60
+#: djreservas/templates/djreservas/base.html:126
+#: djreservas/templates/djreservas/calendario.html:52
+msgid "Agendar"
+msgstr ""
+
+#: djreservas/templates/djreservas/base.html:63
+#: djreservas/templates/djreservas/base.html:129
 msgid "Calendário"
 msgstr ""
 
-#: djreservas/templates/djreservas/base.html:64
-#: djreservas/templates/djreservas/base.html:118
-msgid "Contato"
+#: djreservas/templates/djreservas/base.html:67
+msgid "Administrador"
 msgstr ""
 
-#: djreservas/templates/djreservas/base.html:70
+#: djreservas/templates/djreservas/base.html:80
 msgid "Trocar Senha"
 msgstr ""
 
-#: djreservas/templates/djreservas/base.html:72
+#: djreservas/templates/djreservas/base.html:82
 msgid "Sair"
 msgstr ""
 
-#: djreservas/templates/djreservas/base.html:95
+#: djreservas/templates/djreservas/base.html:107
 msgid "Navegação"
 msgstr ""
 
-#: djreservas/templates/djreservas/base.html:96
+#: djreservas/templates/djreservas/base.html:109
 msgid "Nossa Localização"
 msgstr ""
 
+#: djreservas/templates/djreservas/calendario.html:56
+msgid "No events"
+msgstr ""
+
+#: djreservas/templates/djreservas/calendario.html:74
+#: djreservas/templates/djreservas/index.html:35
+#: djreservas/templates/djreservas/index.html:71
+msgid "Sala"
+msgstr ""
+
+#: djreservas/templates/djreservas/calendario.html:75
+#: djreservas/templates/djreservas/index.html:36
+#: djreservas/templates/djreservas/index.html:72
+msgid "Horário"
+msgstr ""
+
+#: djreservas/templates/djreservas/calendario.html:76
+#: djreservas/templates/djreservas/index.html:37
+#: djreservas/templates/djreservas/index.html:73
+msgid "Responsável"
+msgstr ""
+
+#: djreservas/templates/djreservas/calendario.html:77
+#: djreservas/templates/djreservas/index.html:38
+#: djreservas/templates/djreservas/index.html:74
+msgid "Contato"
+msgstr ""
+
+#: djreservas/templates/djreservas/calendario.html:78
+#: djreservas/templates/djreservas/index.html:39
+#: djreservas/templates/djreservas/index.html:75
+msgid "Motivo"
+msgstr ""
+
+#: djreservas/templates/djreservas/calendario.html:81
+#: djreservas/templates/djreservas/index.html:44
+#: djreservas/templates/djreservas/index.html:81
+msgid "Fechar"
+msgstr ""
+
 #: djreservas/templates/djreservas/forms.html:7
-msgid " Reservas "
+msgid " Multimeios - Reservas "
 msgstr ""
 
 #: djreservas/templates/djreservas/forms.html:15
@@ -73,30 +132,73 @@ msgstr ""
 msgid "-- Escolha a Sala --"
 msgstr ""
 
-#: djreservas/templates/djreservas/forms.html:78
+#: djreservas/templates/djreservas/forms.html:79
+msgid "Responsável pela Reserva"
+msgstr ""
+
+#: djreservas/templates/djreservas/forms.html:81
+msgid "-- Escolha o Responsável --"
+msgstr ""
+
+#: djreservas/templates/djreservas/forms.html:99
 msgid "Motivo da Reserva"
 msgstr ""
 
-#: djreservas/templates/djreservas/forms.html:79
+#: djreservas/templates/djreservas/forms.html:100
 msgid "Coloque o motivo de sua reserva."
 msgstr ""
 
-#: djreservas/templates/djreservas/forms.html:85
+#: djreservas/templates/djreservas/forms.html:106
 msgid "Pedir Reserva"
 msgstr ""
 
-#: multimeios/settings.py:118
+#: djreservas/templates/djreservas/index.html:9
+msgid "Reservas das salas durante a semana"
+msgstr ""
+
+#: djreservas/templates/djreservas/index.html:17
+msgid "Pendentes"
+msgstr ""
+
+#: djreservas/templates/djreservas/index.html:42
+msgid "Aprovar"
+msgstr ""
+
+#: djreservas/templates/djreservas/index.html:43
+msgid "Reprovar"
+msgstr ""
+
+#: djreservas/templates/djreservas/index.html:52
+msgid "Aprovadas"
+msgstr ""
+
+#: djreservas/templates/djreservas/index.html:79
+msgid "Cancelar"
+msgstr ""
+
+#: djreservas/templates/djreservas/success.html:19
+msgid ""
+"Você pode ver sua reserva no <b><i>Calendário</i></b> dessa Página.</"
+"br>Clicando neste link."
+msgstr ""
+
+#: djreservas/templates/djreservas/success.html:24
+msgid ""
+"Você também pode fazer outra <b><i>Reserva</b></i>.</br>Clicando neste link."
+msgstr ""
+
+#: multimeios/settings.py:140
 msgid "Português Brasileiro"
 msgstr ""
 
-#: multimeios/settings.py:119
+#: multimeios/settings.py:141
 msgid "English"
 msgstr ""
 
-#: multimeios/settings.py:120
+#: multimeios/settings.py:142
 msgid "French"
 msgstr ""
 
-#: multimeios/settings.py:121
+#: multimeios/settings.py:143
 msgid "Finnish"
 msgstr ""

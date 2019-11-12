@@ -5,12 +5,12 @@
     </br>
     <div class="alert alert-danger">
         <h5>
-            <strong>{{ user.get_full_name }}</strong>,</br> uma reserva do dia {{reserva.data_reserva|date:'d/m/Y'}} <i><b>não pôde ser aprovada</i></b>.</br> Porque é uma reserva <i><b>fora do prazo</i></b>!
+            <strong>{{ user.get_full_name }}</strong>,</br> {% trans 'uma reserva do dia {{reserva.data_reserva|date:'d/m/Y'}} <i><b>não pôde ser aprovada</i></b>.</br> Porque é uma reserva <i><b>fora do prazo</i></b>!' %}
         </h5>
     </div>
     <div class="footer_error alert alert-info">
         <h6>
-            <a href="{% url 'djreservas:index' %}" class="text-primary">Você pode voltar para a área de reserva indo na <b><i>Home</i></b>.</br>Clicando neste link.</a>
+            <a href="{% url 'djreservas:index' %}" class="text-primary">{% trans 'Você pode voltar para a área de reserva indo na <b><i>Home</i></b>.</br>Clicando neste link.' %}</a>
         </h6>
     </div>
     

@@ -6,7 +6,7 @@ HTML. -->
 <!-- Função do Django para início dos novos códigos no index.html -->
 {% block content %}
 <section class="index_sessao">
-    <h4 class="tit_semana"><strong>Reservas das salas durante a semana:</strong></h4>
+    <h4 class="tit_semana"><strong>{% trans 'Reservas das salas durante a semana' %}:</strong></h4>
     </br>
     <div class="row">
         {% for sala in salas %}
@@ -14,7 +14,7 @@ HTML. -->
                 <h5 style="color: {{sala.cor}};"><strong>{{sala.nome}}</strong></h5>
                 </br>
                 {% if isadmin %}
-                    <i><h6>Pendentes</h6></i>
+                    <i><h6>{% trans 'Pendentes' %}</h6></i>
                     <ul class="list-group">
                         {% for reserva in sala.reservas_pendentes%}
                             <li class="list-group-item list-group-item-warning abre_modal" data-toggle="modal" data-target="#reserva_{{reserva.id}}">
@@ -26,22 +26,22 @@ HTML. -->
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLongTitle"><strong>Multimeios</strong> - {{ reserva.data_reserva|date:'d/m/Y' }}</h5>
+                                      <h5 class="modal-title" id="exampleModalLongTitle"><strong>{% trans 'Multimeios' %}</strong> - {{ reserva.data_reserva|date:'d/m/Y' }}</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
                                     <div class="modal-body text-left">
-                                        <strong>Sala:</strong> {{ reserva.sala }}</br>
-                                        <strong>Horário:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
-                                        <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
-                                        <strong>Contato:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
-                                        <strong>Motivo:</strong> {{ reserva.motivo }}
+                                        <strong>{% trans 'Sala' %}:</strong> {{ reserva.sala }}</br>
+                                        <strong>{% trans 'Horário' %}:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
+                                        <strong>{% trans 'Responsável' %}:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
+                                        <strong>{% trans 'Contato' %}:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
+                                        <strong>{% trans 'Motivo' %}:</strong> {{ reserva.motivo }}
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="{% url 'djreservas:aprovar' reserva.id %}" class="btn btn-success">Aprovar</a>
-                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">Reprovar</a>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        <a href="{% url 'djreservas:aprovar' reserva.id %}" class="btn btn-success">{% trans 'Aprovar' %}</a>
+                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">{% trans 'Reprovar' %}</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Fechar' %}</button>
                                     </div>
                                   </div>
                                 </div>
@@ -49,7 +49,7 @@ HTML. -->
                         {% endfor %}
                     </ul>
                     </br>
-                    <i><h6>Aprovadas</h6></i>
+                    <i><h6>{% trans 'Aprovadas' %}</h6></i>
                 {% endif %}
                 <ul class="list-group">
                     {% for reserva in sala.reservas_aprovadas%}
@@ -62,23 +62,23 @@ HTML. -->
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Multimeios</strong> - {{ reserva.data_reserva|date:'d/m/Y' }}</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>{% trans 'Multimeios' %}</strong> - {{ reserva.data_reserva|date:'d/m/Y' }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body text-left">
-                                    <strong>Sala:</strong> {{ reserva.sala }}</br>
-                                    <strong>Horário:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
-                                    <strong>Responsável:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
-                                    <strong>Contato:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
-                                    <strong>Motivo:</strong> {{ reserva.motivo }}
+                                    <strong>{% trans 'Sala' %}:</strong> {{ reserva.sala }}</br>
+                                    <strong>{% trans 'Horário' %}:</strong>{{ reserva.hora_inicio|date:'H:i' }} até {{ reserva.hora_fim|date:'H:i' }}</br>
+                                    <strong>{% trans 'Responsável' %}:</strong> {{ reserva.responsavel_cliente.get_full_name }}</br>
+                                    <strong>{% trans 'Contato' %}:</strong> <a href="mailto:{{ reserva.responsavel_cliente.email }}">{{ reserva.responsavel_cliente.email }}</a></br>
+                                    <strong>{% trans 'Motivo' %}:</strong> {{ reserva.motivo }}
                                 </div>
                                 <div class="modal-footer">
                                     {% if isadmin or user.id == reserva.responsavel_cliente.id %}
-                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">Cancelar</a>
+                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">{% trans 'Cancelar' %}Cancelar</a>
                                     {% endif %}
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Fechar' %}</button>
                                 </div>
                                 </div>
                             </div>
