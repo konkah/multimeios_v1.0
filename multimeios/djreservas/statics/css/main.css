@@ -1,0 +1,62 @@
+/**/
+/* index.html */
+.index_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+.abre_modal{
+	cursor: pointer;
+}
+.tit_semana{
+	text-decoration: rgb(33, 37, 41);
+}
+
+/* forms.html */
+.forms_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+
+/* calendário.html */
+.calend_sessao{
+	margin: 40px;
+}
+.calendario{
+	min-height: 160px;
+}
+.nav_calendario{
+	color: rgb(33, 37, 41);
+}
+.nav_calendario:hover{
+	text-decoration: none;
+}
+.filtro_sala{
+	margin: 0 13px;
+}
+.abre_link{
+	cursor: pointer;
+}
+.color{
+	background-color: rgb(30,144,255);
+}
+
+/* success.html */
+.success_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+
+/* password_change_success.html */
+.success_change_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+
+/* aprovacao_erro.html */
+.aprov_erro_sessao{
+	min-height: 400px;
+	margin: 20px;
+}
+.footer_error{
+	margin-top: 110px;
+}

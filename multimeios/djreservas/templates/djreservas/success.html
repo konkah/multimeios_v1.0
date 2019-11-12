@@ -1,0 +1,27 @@
+{% extends 'djreservas/base.html' %}
+{% load i18n %}
+{% block content %}
+<section class="success_sessao">
+    </br>
+    <div class="alert alert-success">
+        <h5>
+            <strong>{{ nome }}</strong>,</br>sua reserva foi realizada com <b><i>Sucesso</i></b>!
+        </h5>
+    </div>
+    </br>
+    <div class="alert alert-info">
+        <h6>
+            <a href="{% url 'djreservas:index' %}" class="text-primary">Você pode ver sua reserva na <b><i>Home</i></b> dessa Página.</br>Clicando neste link.</a>
+        </h6>
+    </div>
+    <div class="alert alert-info">
+        <h6>
+            <a href="{% url 'djreservas:calendario_hoje' %}" class="ls-login-forgot">Você pode ver sua reserva no <b><i>Calendário</i></b> dessa Página.</br>Clicando neste link.</a>
+        </h6>
+    </div>
+    </br>
+    <div class="alert alert-secondary">
+        <a href="{% url 'djreservas:forms' %}" class="text-dark">Você também pode fazer outra <b><i>Reserva</b></i>.</br>Clicando neste link.</a>
+    </div>
+</section>
+{% endblock %}

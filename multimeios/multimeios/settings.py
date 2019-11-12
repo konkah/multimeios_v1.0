@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ob7bzxjszl=t9u)cy8w-jfxdtl^v6t5v5lj8r#1ljq$hyd^)qa'
+
+#-----------------------------
+
+# secret.key file should be ignored by git,
+# so the secret key is kept secret
+SECRET_FILE = os.path.join(BASE_DIR, 'secret.key')
+
+# try to get the secret from a file
+try:
+    SECRET_KEY = open(SECRET_FILE).read().strip()
+
+# if the file do not exists, generate the file
+except IOError:
+    # generate new key (uses "from django... import..." at the beginning of the file)
+    SECRET_KEY = get_random_secret_key()
+    # save on the file, to keep the same next time
+    open(SECRET_FILE, 'w+').write(SECRET_KEY)
+
+# this would get key from environment
+#SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+#-----------------------------
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,6 +51,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# Aplicações criadas para o projeto
 
 INSTALLED_APPS = [
     'djreservas.apps.DjreservasConfig',
@@ -39,6 +62,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# Regras para funcionamento das Aplicações
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,6 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -77,8 +103,11 @@ WSGI_APPLICATION = 'multimeios.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djreservas',
+        'USER': 'root',
+        'PASSWORD':'password',
+        'HOST': 'localhost', 
     }
 }
 
@@ -106,26 +135,35 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
+ugettext = lambda s: s
+LANGUAGES = (
+    ('pt_BR', ugettext('Português Brasileiro')),
+    ('en_US', ugettext('English')),
+    ('fr', ugettext('French')),
+    ('fi', ugettext('Finnish')),
+)
 
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
-LANGUAGES = (
-    ('pt-br', u'Português'),
-    ('en', u'Inglês'),
-    ('es', u'Espanhol'),
-)
 
 USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+# Criação do caminho para os arquivos estáticos (CSS, JS, Imagens)
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djreservas', 'statics'),
 ]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/conta/login/'

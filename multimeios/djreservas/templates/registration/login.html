@@ -1,0 +1,38 @@
+{% extends 'djreservas/base.html' %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3">
+  <section>
+    </br>
+    <h2>Login: Multimeios</h2>
+    </br>
+    <form method="post">
+      {% csrf_token %}
+      <div class="box-parent-login">
+        <div class="well bg-white box-login">
+          <form role="form">
+            <fieldset>
+              </br>
+              <div class="form-group ls-login-user">
+                <strong><label for="userLogin">Usuário</label></strong>
+                <input name="username" class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário">
+              </div>
+
+              <div class="form-group ls-login-password">
+                <strong><label for="userPassword">Senha</label></strong>
+                <input name="password" type="password" class="form-control ls-login-bg-password input-lg" id="userPassword" aria-label="Senha" placeholder="Senha">
+                <a href="#" class="text-primary">Esqueci minha senha</a>
+              </div>
+              </br>
+              </br>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
+              </br>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </form>
+  </section>
+</div> 
+{% endblock %}
