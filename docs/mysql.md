@@ -1,7 +1,7 @@
 ### Instalando o MySql
 
 ```
-sudo apt mysql-server
+sudo apt install mysql-server
 sudo apt mysql-workbench
 sudo mysql_secure_installation
 ```
