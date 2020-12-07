@@ -2,8 +2,19 @@
 
 ```
 sudo apt install mysql-server
-sudo apt mysql-workbench
+sudo systemctl status mysql (Verify service status)
 sudo mysql_secure_installation
+sudo mysql (Login root to mysql)
+```
+
+### Instalando MySql Workbench
+```
+Download configuratio file: https://dev.mysql.com/downloads/repo/apt/
+sudo apt install ./mysql-apt-config_*.*.**-*_all.deb
+sudo apt update
+sudo apt install mysql-workbench-community
+mysql-workbench (Launch MySQL Workbench)
+
 ```
 
 Então configure o banco de dados local
