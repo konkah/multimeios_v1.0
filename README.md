@@ -19,7 +19,7 @@ outro responsável e também deve aprovar ou reprovar as reservas.
 - Django: 2.2.5
 - VS Code: 1.40.0 (Versão Usada, não mandatório)
 - MySQL: Ver 14.14 Distrib 5.7.27, for Linux
-- Ubuntu: 18.04 
+- Ubuntu: 18.04 (Versão Usada, não mandatório)
 
 
 
