@@ -36,6 +36,13 @@ which python3.7 #(Mostra o caminho dos diretórios da versão do Python escolhid
 sudo virtualenv -p /usr/local/bin/python3.7 envRES
 ```
 
+### Ativar e Desativar a ENV
+
+```bash
+source envRES/bin/activate
+deactivate #(Pode ser digitado em qualquer diretório do terminal enquanto a env estiver ativada)
+```
+
 ### Dentro da ENV
 
 ```bash
