@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djreservas',
         'USER': 'root',
-        'PASSWORD':'password',
+        'PASSWORD':'PassworD',
         'HOST': 'localhost', 
     }
 }
