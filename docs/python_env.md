@@ -21,14 +21,14 @@ sudo apt install libssl-dev libncurses5-dev libsqlite3-dev libreadline-dev libtk
 sudo pip3 install virtualenv
 ```
 
-#### Criando uma ENV de uma versão Específica (Python 3.7.4)
+### Criando uma ENV de uma versão Específica (Python 3.7.4)
 
 ```bash
 which python3.7 #(Mostra o caminho dos diretórios da versão do Python escolhida)
 sudo virtualenv -p /usr/local/bin/python3.7 envRES
 ```
 
-#### Dentro da ENV
+### Dentro da ENV
 
 ```bash
 sudo python -m pip install -U pip #(Atualizar o Pip)
@@ -38,4 +38,12 @@ python manage.py migrate
 cd ..
 pip install -r requirements.txt
 
+```
+
+### Dentro da ENV - Rodar o Sistema
+
+```bash
+cd /multimeios
+python manage.py runserver
+Depois ir no Browser e digitar: 127.0.0.1:8000
 ```
