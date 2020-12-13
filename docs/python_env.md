@@ -33,7 +33,7 @@ sudo pip3 install virtualenv
 
 ```bash
 which python3.7 #(Mostra o caminho dos diretórios da versão do Python escolhida)
-sudo virtualenv -p /usr/local/bin/python3.7 envRES
+virtualenv -p /usr/local/bin/python3.7 envRES
 ```
 
 ### Ativar e Desativar a ENV
