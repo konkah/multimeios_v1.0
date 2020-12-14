@@ -19,8 +19,8 @@ sudo ./configure #(Faz a configuração e Build do Python)
 sudo make altinstall
 ```
 ```bash
-rm Python-3.7.4.tar.xz #(Remover o arquivo compactado baixado)
-rm -r Python-3.7.4 #(Remover o diretório)
+sudo rm Python-3.7.4.tar.xz #(Remover o arquivo compactado baixado)
+sudo rm -r Python-3.7.4 #(Remover o diretório)
 ```
 
 ### Instalando a Virtualenv Default
@@ -46,11 +46,10 @@ deactivate #(Pode ser digitado em qualquer diretório do terminal enquanto a env
 ### Dentro da ENV
 
 ```bash
-sudo python -m pip install -U pip #(Atualizar o Pip)
-pip install mysqlclient
+python -m pip install -U pip #(Atualizar o Pip)
 cd /multimeios
-python manage.py migrate
 pip install -r requirements.txt
+python manage.py migrate
 ```
 
 ### Dentro da ENV - Rodar o Sistema
