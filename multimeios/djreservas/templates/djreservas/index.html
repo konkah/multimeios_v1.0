@@ -76,7 +76,7 @@ HTML. -->
                                 </div>
                                 <div class="modal-footer">
                                     {% if isadmin or user.id == reserva.responsavel_cliente.id %}
-                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">{% trans 'Cancelar' %}Cancelar</a>
+                                        <a href="{% url 'djreservas:reprovar' reserva.id %}" class="btn btn-danger">{% trans 'Cancelar' %}</a>
                                     {% endif %}
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Fechar' %}</button>
                                 </div>
