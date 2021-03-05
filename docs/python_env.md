@@ -49,12 +49,8 @@ deactivate #(Pode ser digitado em qualquer diretório do terminal enquanto a env
 python --version #(Ver versão do Python)
 python -m pip install -U pip #(Atualizar o Pip)
 cd /multimeios
-Caso for usar MySQL/MariaDB no seu projeto:
-- sudo apt install default-libmysqlclient-dev
-- pip install mysqlclient ou python -m pip install mysqlclient
-- sudo pip install pymysql
 python -m pip install Django #(Instalar o Django do Zero)
-python -m django --version ##(Ver versão do Django)
+python -m django --version #(Ver versão do Django)
 pip install -r requirements.txt #(Instalar um projeto Django, caso você tenha um projeto pronto)
 python manage.py migrate
 ```
@@ -63,6 +59,7 @@ python manage.py migrate
 ```bash
 django-admin startproject mysite
 python manage.py startapp appExemplo
+pip freeze > requirements.txt #(Criar os requerimentos da env após um projeto Django ser 'concluído')
 ```
 
 ### Auto-generate the models
