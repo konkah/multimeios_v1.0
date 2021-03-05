@@ -65,6 +65,12 @@ django-admin startproject mysite
 python manage.py startapp appExemplo
 ```
 
+### Auto-generate the models
+```bash
+python manage.py inspectdb
+python manage.py inspectdb > appExemplo/models.py
+```
+
 ### Dentro da ENV - Rodar o Sistema
 
 ```bash
