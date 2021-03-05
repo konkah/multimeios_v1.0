@@ -46,9 +46,12 @@ deactivate #(Pode ser digitado em qualquer diretório do terminal enquanto a env
 ### Dentro da ENV
 
 ```bash
+python --version #(Ver versão do Python)
 python -m pip install -U pip #(Atualizar o Pip)
 cd /multimeios
-pip install -r requirements.txt
+python -m pip install Django #(Instalar o Django do Zero)
+python -m django --version ##(Ver versão do Django)
+pip install -r requirements.txt #(Instalar um projeto Django, caso você tenha um projeto pronto)
 python manage.py migrate
 ```
 
