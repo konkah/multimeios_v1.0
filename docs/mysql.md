@@ -37,14 +37,23 @@ SET GLOBAL validate_password_policy=LOW;
 
 No caso da LOW, a única exigência é ter 8 caracteres.
 
-#### Caso dê mySQL não encontrado
+#### Caso dê mySQL não encontrado no projeto Django
 
-Comando para colocar as bibliotecas do mysqlclient na env.
+Comandos para colocar as bibliotecas do mysqlclient na env.
 ```
+sudo apt install default-libmysqlclient-dev
 sudo apt-get install python3-dev libmysqlclient-dev
+
 ```
 
-Comando para instalar o mysqlclient na env.
+Comandos para instalar o mysqlclient na env.
 ```
 pip install mysqlclient
+python -m pip install mysqlclient
+```
+
+Comando para instalar o pymysql na env.
+```
+pip install pymysql
+python -m pip install mysqlclient
 ```
