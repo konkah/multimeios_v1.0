@@ -69,6 +69,7 @@ python manage.py startapp appExemplo
 ```bash
 python manage.py inspectdb
 python manage.py inspectdb > appExemplo/models.py
+python manage.py migrate
 ```
 
 ### Dentro da ENV - Rodar o Sistema
