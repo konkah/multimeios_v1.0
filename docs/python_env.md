@@ -51,7 +51,7 @@ python -m pip install -U pip #(Atualizar o Pip)
 cd /multimeios
 Caso for usar MySQL/MariaDB no seu projeto:
 - sudo apt install default-libmysqlclient-dev
-- pip install mysqlclient
+- pip install mysqlclient ou python -m pip install mysqlclient
 - sudo pip install pymysql
 python -m pip install Django #(Instalar o Django do Zero)
 python -m django --version ##(Ver versão do Django)
