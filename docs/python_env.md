@@ -49,6 +49,10 @@ deactivate #(Pode ser digitado em qualquer diretório do terminal enquanto a env
 python --version #(Ver versão do Python)
 python -m pip install -U pip #(Atualizar o Pip)
 cd /multimeios
+Caso for usar MySQL/MariaDB no seu projeto:
+- sudo apt install default-libmysqlclient-dev
+- pip install mysqlclient
+- sudo pip install pymysql
 python -m pip install Django #(Instalar o Django do Zero)
 python -m django --version ##(Ver versão do Django)
 pip install -r requirements.txt #(Instalar um projeto Django, caso você tenha um projeto pronto)
