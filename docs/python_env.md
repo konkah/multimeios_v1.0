@@ -54,6 +54,12 @@ python -m django --version ##(Ver versão do Django)
 pip install -r requirements.txt #(Instalar um projeto Django, caso você tenha um projeto pronto)
 python manage.py migrate
 ```
+### Criando Projeto
+
+```bash
+django-admin startproject mysite
+python manage.py startapp appExemplo
+```
 
 ### Dentro da ENV - Rodar o Sistema
 
