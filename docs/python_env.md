@@ -9,13 +9,12 @@ sudo apt install -y python3-pip
 ### Instalando uma versão do Python Específica e suas Dependências (Python 3.7.4)
 
 ```bash
-sudo apt install -y curl #(Serve para visitar páginas da web via terminal)
+sudo apt install -y curl wget unzip #(Serve para visitar páginas da web via terminal)
 sudo curl https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz > Python-3.7.4.tar.xz #(Baixar o arquivo compactado Python 3.7.4)
 tar -xf Python-3.7.4.tar.xz #(Descompactar o arquivo)
-cd /Python3.7.4 #(Entrar no diretório)
-sudo apt install libffi-dev libssl-dev libncurses5-dev libsqlite3-dev libreadline-dev libtk libgdm-dev libdb4o-cil-dev libpcap-dev #(Dependências do Python)
-sudo ./configure #(Faz a configuração e Build do Python)
-#sudo ./configure --enable-optimizations (Opcional)
+cd /Python-3.7.4 #(Entrar no diretório)
+sudo apt install -y build-essential zlib1g-dev libnss3-dev libssl-dev libffi-dev libssl-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libreadline-dev libtk libgdm-dev libdb4o-cil-dev libpcap-dev libopenblas-base libopenblas-dev xz-utils llvm libbz2-dev  #(Dependências do Python)
+#sudo ./configure --enable-optimizations (Faz a configuração e Build do Python)
 sudo make altinstall
 ```
 ```bash
