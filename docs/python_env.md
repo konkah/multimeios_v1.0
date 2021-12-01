@@ -49,6 +49,8 @@ deactivate #(Pode ser digitado em qualquer diretório do terminal enquanto a env
 python --version #(Ver versão do Python)
 python -m pip install -U pip #(Atualizar o Pip)
 python -m pip install -U pip setuptools
+python -m pip install novas
+python -m pip install --upgrade requests
 cd /multimeios
 python -m pip install Django #(Instalar o Django do Zero)
 python -m django --version #(Ver versão do Django)
